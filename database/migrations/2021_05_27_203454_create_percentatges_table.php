@@ -15,8 +15,8 @@ class CreatePercentatgesTable extends Migration
     {
         Schema::create('percentatges', function (Blueprint $table) {
             $table->id_percentage();
-            $table->foreign('id_course')->references('id_course')->on('courses');
-            $table->foreign('id_class')->references('id_class')->on('class');
+            $table->foreignId('id_course')->references('id_course')->on('courses');
+            $table->foreignId('id_class')->references('id_class')->on('class');
             $table->float('continuous_assessment');
             $table->float('exams');
         });

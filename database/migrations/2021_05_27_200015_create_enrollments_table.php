@@ -15,8 +15,8 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id_enrollment();
-            $table->foreign('id_student')->references('id_student')->on('students');
-            $table->foreign('id_course')->references('id_course')->on('courses');
+            $table->foreignId('id_student')->references('id_student')->on('students');
+            $table->foreignId('id_course')->references('id_course')->on('courses');
             $table->integer('status');
             $table->timestamps();
         });

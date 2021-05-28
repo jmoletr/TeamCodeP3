@@ -15,8 +15,8 @@ class CreateExamsTable extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id_exam();
-            $table->foreign('id_class')->references('id_class')->on('class');
-            $table->foreign('id_student')->references('id_student')->on('students');
+            $table->foreignId('id_class')->references('id_class')->on('class');
+            $table->foreignId('id_student')->references('id_student')->on('students');
             $table->string('name');
             $table->float('mark');
             $table->timestamps();

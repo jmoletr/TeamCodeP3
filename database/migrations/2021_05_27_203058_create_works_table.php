@@ -15,8 +15,8 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id_work();
-            $table->foreign('id_class')->references('id_class')->on('class');
-            $table->foreign('id_student')->references('id_student')->on('students');
+            $table->foreignId('id_class')->references('id_class')->on('class');
+            $table->foreignId('id_student')->references('id_student')->on('students');
             $table->string('name');
             $table->float('mark');
             $table->timestamps();

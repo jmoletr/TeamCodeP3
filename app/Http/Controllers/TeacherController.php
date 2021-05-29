@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,10 +14,5 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-
-
-    public function index($id){
-        return view('profile');
     }
 }

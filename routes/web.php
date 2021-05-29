@@ -24,3 +24,11 @@ Route::get('/admin', 'App\Http\Controllers\AdminController@index');
 
 Route::get('/student', 'App\Http\Controllers\StudentController@index');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

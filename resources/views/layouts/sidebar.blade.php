@@ -5,21 +5,32 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">BIENVENIDO</div>
     </a>
 
     <!-- Divider -->
+
     <hr class="sidebar-divider my-0">
+    <li class="nav-item">
+        <a class="nav-link">
+            <span><strong>PANEL DEL ESTUDIANTE</strong></span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/">
+            <span>CURSOS ACTUALES:</span>
+        </a>
+    </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Admin</span>
             </a>
         </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/users/">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Usuarios</span>
-        </a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/users/">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Usuarios</span>
+            </a>
+        </li>
 </ul>

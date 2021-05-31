@@ -31,4 +31,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student');
 
+Route::get('/teacher', [App\Http\Controllers\TeacherController::class, 'index'])->name('teacher');
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
 

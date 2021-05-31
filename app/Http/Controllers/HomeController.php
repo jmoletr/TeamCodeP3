@@ -26,9 +26,9 @@ class HomeController extends Controller
         //dd(Auth::user()->rol_id);
         $rolIdUser=Auth::user()->rol_id;
         if($rolIdUser===1){//es admin
-            return view('home');
+            return redirect()->route('admin');
         }else if($rolIdUser===2){//es profesor
-            return view('teacher');
+            return redirect()->route('teacher');
         }else if ($rolIdUser===3){//es estudiante
             return redirect()->route('student');
         }

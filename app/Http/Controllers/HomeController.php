@@ -30,7 +30,7 @@ class HomeController extends Controller
         }else if($rolIdUser===2){//es profesor
             return view('teacher');
         }else if ($rolIdUser===3){//es estudiante
-            return view('student');
+            return redirect()->route('student');
         }
     }
 }

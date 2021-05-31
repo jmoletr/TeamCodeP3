@@ -29,6 +29,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('/student', [App\Http\Controllers\StudentController::class, 'index'])->name('student');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/teacher', [App\Http\Controllers\TeacherController::class, 'index'])->name('teacher');
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+

@@ -26,11 +26,11 @@ class HomeController extends Controller
         //dd(Auth::user()->rol_id);
         $rolIdUser=Auth::user()->rol_id;
         if($rolIdUser===1){//es admin
-            return view('home');
+            return redirect ('/admin');
         }else if($rolIdUser===2){//es profesor
-            return view('teacher');
+            return redirect ('/teacher');
         }else if ($rolIdUser===3){//es estudiante
-            return view('student');
+            return redirect('/student');
         }
     }
 }

@@ -23,7 +23,6 @@
                 </tr>
             </thead>
             <tbody>
-            <?php  //dd($clases) ?>
             @foreach($clases as $clase)
             <tr>
                 <td>{{$clase->nameClass}}</td>

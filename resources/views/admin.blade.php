@@ -22,7 +22,6 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- <?php // dd($asignaturas) ?> -->
             @foreach($asignaturas as $asignatura)
                 <tr>
                     <td>Alumno: {{$asignatura->name}} {{$asignatura->surname}}</td>

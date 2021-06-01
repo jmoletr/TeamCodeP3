@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -24,6 +26,7 @@ class ProfileController extends Controller
     }
 
     public function editProfile(Request $request){
+        $user = Auth::user();
         $user =  User::find($request->id);
         $user->name = $request->name;
         $user->name = $request->surname;

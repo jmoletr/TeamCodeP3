@@ -21,11 +21,14 @@ Route::get('/profile', function() { return view('profile');});
 Route::get('/ver/{id}', 'App\Http\Controllers\ProfileController@index');
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@index');
-
-Route::get('/student', 'App\Http\Controllers\StudentController@index');
+Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
+Route::post('/profile/edit', 'App\Http\Controllers\ProfileController@editProfile');
+//Route::get('/student', 'App\Http\Controllers\StudentController@showCourses');
 
 
 Auth::routes();
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

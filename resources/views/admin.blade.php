@@ -18,7 +18,7 @@
                 <tr>
                     <td>Estudiante</td>
                     <td>Curso</td>
-                    <td>Ver detallesc</td>
+                    <td>Ver detalles</td>
                 </tr>
             </thead>
             <tbody>
@@ -38,3 +38,4 @@
         </table>
     </div>
 @endsection
+

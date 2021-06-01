@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -17,7 +20,23 @@ class ProfileController extends Controller
     }
 
 
-    public function index($id){
+    public function index(){
+
         return view('profile');
     }
+
+    public function editProfile(Request $request){
+        $user = Auth::user();
+        $user =  User::find($request->id);
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->telephone = $request->telephone;
+        $user->nif = $request->nif;
+        $user->save();
+        return back()->with('Profile edit correctly');
+    }
+
+
 }

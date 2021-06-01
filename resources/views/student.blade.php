@@ -54,15 +54,8 @@
         <li class="nav-item">
             <a class="nav-link" href="/admin/">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Admin</span>
+                <span>CURSOS ACTUALES:</span>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/users/">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Usuarios</span>
-            </a>
-        </li>
     </ul>
 
     <!-- End of Sidebar -->

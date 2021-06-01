@@ -47,12 +47,17 @@ class AdminController extends Controller
         
             return view('admin.clases', ['clases'=>$clases]);
         }else if($request->only('listartrabajos')){
-            $idStudent = $request->only('listartrabajos');
+            $temp = $request->only('listartrabajos');
+            $arraytemp = explode("+", $temp['listartrabajos']);
+            $idStudent=$arraytemp[0];
+            $idClass=$arraytemp[1]; 
             $works = DB::table('works')
                 ->select('works.*','class.name AS nameClass','class.id_class','users.name','users.surname','users.id AS iduser')
                 ->join('class','class.id_class','=','works.id_class')
                 ->join('users','users.id','=','works.id_student')
+                ->join('courses','class.id_course','=','courses.id_course')
                 ->where('works.id_student',$idStudent)
+                ->where('works.id_class', $idClass)
                 ->get();
             // $works = DB::table('works')
             //     ->select('works.*')

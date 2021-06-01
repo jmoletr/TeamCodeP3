@@ -32,8 +32,8 @@
                 <td>
                         <form action="/admin" method="POST">
                         @csrf
-                            <button class="btn btn-round" type="submit" name="listartrabajos" value={{$clase->iduser}}> <i class="fas fa-file-word"></i>Trabajos</button>
-                            <button class="btn btn-round" type="submit" name="listarexamenes" value={{$clase->iduser}}> <i class="fas fa-diagnoses"></i>Exámenes</button>
+                            <button class="btn btn-round" type="submit" name="listartrabajos" value={{$clase->iduser}}+{{$clase->id_class}}> <i class="fas fa-file-word"></i>Trabajos</button>
+                            <button class="btn btn-round" type="submit" name="listarexamenes" value={{$clase->iduser}}+{{$clase->id_class}}> <i class="fas fa-diagnoses"></i>Exámenes</button>
                         </form>
                 </td>
             </tr>

@@ -26,8 +26,8 @@
             <?php  //dd($clases) ?>
             @foreach($clases as $clase)
             <tr>
-                <td>{{$clase->name}}</td>
-                <td>{{$clase->name}}</td>
+                <td>{{$clase->nameClass}}</td>
+                <td>{{$clase->description}}</td>
                 <td>{{$clase->name}} {{$clase->surname}}</td>
                 <td>
                 <!-- botonMostrar -->

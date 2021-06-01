@@ -18,7 +18,7 @@
                 <tr>
                     <td>Estudiante</td>
                     <td>Curso</td>
-                    <td>Ver detalles</td>
+                    <td>Ver detallesc</td>
                 </tr>
             </thead>
             <tbody>

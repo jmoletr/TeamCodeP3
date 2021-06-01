@@ -48,7 +48,7 @@ class AdminController extends Controller
         //     ->where('enrollment.id_student',$idStudent)
         //     ->get();
         $clases = DB::table('class')
-            ->select('class.*','enrollment.id_student','users.name','users.surname','courses.description')
+            ->select('class.name AS nameClass','enrollment.id_student','users.name','users.surname','courses.description')
             ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
             ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
             ->join('users', 'users.id', '=', 'enrollment.id_student')

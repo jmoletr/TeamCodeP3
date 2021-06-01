@@ -35,17 +35,34 @@ class AdminController extends Controller
 
     public function store(Request $request){
         // saber qué estudiante ha pulsado
-        $asignaturas = session('asignaturas');
-        $idStudent = $request->only('listarclass');
-        $clases = DB::table('class')
-            ->select('class.name AS nameClass','enrollment.id_student','users.name','users.surname','courses.description')
-            ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
-            ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
-            ->join('users', 'users.id', '=', 'enrollment.id_student')
-            ->where('enrollment.id_student',$idStudent)
-            ->get();
-       
-        return view('admin.clases', ['clases'=>$clases]);
+        if($request->only('listarclass')){
+            $idStudent = $request->only('listarclass');
+            $clases = DB::table('class')
+                ->select('class.name AS nameClass','class.id_class','enrollment.id_student','users.name','users.surname','courses.description','users.id AS iduser')
+                ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
+                ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
+                ->join('users', 'users.id', '=', 'enrollment.id_student')
+                ->where('enrollment.id_student',$idStudent)
+                ->get();
+        
+            return view('admin.clases', ['clases'=>$clases]);
+        }else if($request->only('listartrabajos')){
+            $idStudent = $request->only('listartrabajos');
+            $works = DB::table('works')
+                ->select('works.*','class.name AS nameClass','class.id_class','users.name','users.surname','users.id AS iduser')
+                ->join('class','class.id_class','=','works.id_class')
+                ->join('users','users.id','=','works.id_student')
+                ->where('works.id_student',$idStudent)
+                ->get();
+            // $works = DB::table('works')
+            //     ->select('works.*')
+            //     ->join('class','class.id_class','=','works.id_class')
+            //     ->join('users','users.id','=','works.id_student')
+            //     ->where('works.id_class', $idClass)
+            //     ->get();
+                return view('admin.works', ['works'=>$works]);
+        }else if($request->only('listarexamenes')){
+        }
     }
        
 }

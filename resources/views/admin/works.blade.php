@@ -2,7 +2,7 @@
 @section('contenido')
 <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Panel de Asignaturas</h1>
+        <h1 class="h3 mb-0 text-gray-800">Panel de Trabajos</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-user fa-sm text-white-50"></i> Generate Report</a>
     </div>
@@ -16,24 +16,24 @@
         <table class="table col-12 table-responsive">
             <thead>
                 <tr>
-                    <td>Asignatura</td>
-                    <td>Curso</td>
                     <td>Alumno</td>
+                    <td>Nombre de Clase (Asignatura)</td>
+                    <td>Calificación</td>
                     <td>&nbsp;</td>
                 </tr>
             </thead>
             <tbody>
-            <?php //dd($clases) ?>
-            @foreach($clases as $clase)
+            <?php //dd($works) ?>
+            @foreach($works as $work)
             <tr>
-                <td>{{$clase->nameClass}}</td>
-                <td>{{$clase->description}}</td>
-                <td>{{$clase->name}} {{$clase->surname}}</td>
+                <td>{{$work->name}} {{$work->surname}}</td>
+                <td>{{$work->nameClass}}</td>
+                <td>{{$work->mark}}</td>
                 <td>
-                        <form action="/admin" method="POST">
+                        <form action="#" method="POST">
                         @csrf
-                            <button class="btn btn-round" type="submit" name="listartrabajos" value={{$clase->iduser}}> <i class="fas fa-file-word"></i>Trabajos</button>
-                            <button class="btn btn-round" type="submit" name="listarexamenes" value={{$clase->iduser}}> <i class="fas fa-diagnoses"></i>Exámenes</button>
+                            <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->iduser}}> <i class="fas fa-edit"></i>Editar</button>
+                            <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->iduser}}> <i class="fas fa-trash"></i>Eliminar</button>
                         </form>
                 </td>
             </tr>

@@ -29,7 +29,6 @@
                     <td>
                         <form action="/admin" method="POST">
                         @csrf
-                        
                             <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i></button>
                         </form>
                     </td>

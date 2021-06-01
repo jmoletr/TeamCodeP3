@@ -18,22 +18,24 @@
                 <tr>
                     <td>Alumno</td>
                     <td>Nombre de Clase (Asignatura)</td>
+                    <td>Nombre de trabado</td>
                     <td>Calificación</td>
                     <td>&nbsp;</td>
                 </tr>
             </thead>
             <tbody>
-            <?php //dd($works) ?>
+            <?php // dd($works) ?>
             @foreach($works as $work)
             <tr>
                 <td>{{$work->name}} {{$work->surname}}</td>
                 <td>{{$work->nameClass}}</td>
+                <td>{{$work->workname}}</td>
                 <td>{{$work->mark}}</td>
                 <td>
-                        <form action="#" method="POST">
+                        <form action="/admin" method="POST">
                         @csrf
                             <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->iduser}}> <i class="fas fa-edit"></i>Editar</button>
-                            <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->iduser}}> <i class="fas fa-trash"></i>Eliminar</button>
+                            <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->id_work}}> <i class="fas fa-trash"></i>Eliminar</button>
                         </form>
                 </td>
             </tr>

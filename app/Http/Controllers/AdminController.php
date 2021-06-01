@@ -52,7 +52,7 @@ class AdminController extends Controller
             $idStudent=$arraytemp[0];
             $idClass=$arraytemp[1]; 
             $works = DB::table('works')
-                ->select('works.*','class.name AS nameClass','class.id_class','users.name','users.surname','users.id AS iduser')
+                ->select('works.*','class.name AS nameClass','class.id_class','users.name','users.surname','users.id AS iduser','works.name AS workname')
                 ->join('class','class.id_class','=','works.id_class')
                 ->join('users','users.id','=','works.id_student')
                 ->join('courses','class.id_course','=','courses.id_course')
@@ -67,6 +67,11 @@ class AdminController extends Controller
             //     ->get();
                 return view('admin.works', ['works'=>$works]);
         }else if($request->only('listarexamenes')){
+        }else if($request->only('borrartrabajos')){
+            $idWork = $request->only('borrartrabajos');
+            DB::table('works')
+                ->where('id_work',$idWork)
+                ->delete();
         }
     }
        

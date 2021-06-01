@@ -29,11 +29,11 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user =  User::find($request->id);
         $user->name = $request->name;
-        $user->name = $request->surname;
-        $user->name = $request->email;
-        $user->name = $request->password;
-        $user->name = $request->telephone;
-        $user->name = $request->nif;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->telephone = $request->telephone;
+        $user->nif = $request->nif;
         $user->save();
         return back()->with('Profile edit correctly');
     }

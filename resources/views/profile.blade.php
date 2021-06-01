@@ -82,41 +82,41 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="{{Auth::user()->name}}">
+                                    <input type="text" class="form-control" id="name" value="{{Auth::user()->name}}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputUsername">Surname</label>
-                                    <input type="text" class="form-control" id="inputSurname" placeholder="{{Auth::user()->surname}}">
+                                    <input type="text" class="form-control" id="surname" value="{{Auth::user()->surname}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="{{Auth::user()->email}}">
+                                    <input type="email" class="form-control" id="email" value="{{Auth::user()->email}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="{{Auth::user()->password}}">
+                                    <input type="password" class="form-control" id="password" value="{{Auth::user()->password}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-10">
-                                    <input type="username" class="form-control" id="inputPassword" placeholder="{{Auth::user()->username}}">
+                                    <input type="text" class="form-control" id="username" value="{{Auth::user()->username}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputNif" class="col-sm-2 col-form-label">Nif</label>
                                 <div class="col-sm-10">
-                                    <input type="nif" class="form-control" id="inputNif" placeholder="{{Auth::user()->nif}}">
+                                    <input type="text" class="form-control" id="nif" value="{{Auth::user()->nif}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputTelephone" class="col-sm-2 col-form-label">Telephone</label>
                                 <div class="col-sm-10">
-                                    <input type="telephone" class="form-control" id="inputTelephone" placeholder="{{Auth::user()->telephone}}">
+                                    <input type="text" class="form-control" id="telephone" value="{{Auth::user()->telephone}}">
                                 </div>
                             </div>
                             <div class="form-group row">

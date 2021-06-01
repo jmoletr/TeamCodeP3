@@ -59,12 +59,6 @@ class AdminController extends Controller
                 ->where('works.id_student',$idStudent)
                 ->where('works.id_class', $idClass)
                 ->get();
-            // $works = DB::table('works')
-            //     ->select('works.*')
-            //     ->join('class','class.id_class','=','works.id_class')
-            //     ->join('users','users.id','=','works.id_student')
-            //     ->where('works.id_class', $idClass)
-            //     ->get();
                 return view('admin.works', ['works'=>$works]);
         }else if($request->only('listarexamenes')){
         }else if($request->only('borrartrabajos')){

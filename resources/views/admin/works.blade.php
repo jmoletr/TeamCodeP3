@@ -31,10 +31,10 @@
                 <td>{{$work->nameClass}}</td>
                 <td>{{$work->workname}}</td>
                 <td>{{$work->mark}}</td>
-                <td>
-                        <form action="/admin" method="POST">
+                <td><button class="btn btn-round btn-primary float-left" type="submit" name="editartrabajos" data-toggle="modal" data-target="#editartrabajos" value={{$work->iduser}}> <i class="fas fa-edit"></i>Editar</button>
+                        <form action="#" method="POST">
                         @csrf
-                            <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->iduser}}> <i class="fas fa-edit"></i>Editar</button>
+                            
                             <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->id_work}}> <i class="fas fa-trash"></i>Eliminar</button>
                         </form>
                 </td>
@@ -42,5 +42,36 @@
             @endforeach
             </tbody>
         </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editartrabajos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="">
+            <div class="form-group">
+                <label for="work_clase">Clase</label>
+                <input class="form-control" id="work_clase" type="number" placeholder="clase" name="work_clase" value={{$work->nameClass}}>
+                <label for="work_student">Estudiante</label>
+                <input class="form-control" id="work_student" type="number" placeholder="student" name="work_student" value={{$work->name}} {{$work->surname}}>
+                <label for="work_name">Trabajo</label>
+                <input class="form-control" id="work_name" type="text" placeholder="nombre trabajo" name="work_name" value={{$work->workname}}>
+                <label for="work_mark">Calificación</label>
+                <input class="form-control" id="work_mark" type="number" placeholder="Calificación" name="work_mark" value={{$work->mark}}>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
     </div>
 @endsection

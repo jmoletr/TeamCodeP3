@@ -65,7 +65,7 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Details of your account</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Edit your account</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-user fa-sm text-white-50"></i> Generate Report</a>
                 </div>
@@ -76,66 +76,88 @@
                             <span>{{ $message }}</span>
                         </div>
                     @endif
-                        <form action="profile/edit" method="post">
-                            @csrf
-                            <input type="hidden" name="id" id="id" value="{{Auth::user()->id}}">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="name" value="{{Auth::user()->name}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputUsername">Surname</label>
-                                    <input type="text" class="form-control" id="surname" value="{{Auth::user()->surname}}">
-                                </div>
+
+                    <form action="{{route('profile.update', Auth::User()->id)}}" method="post">
+                        @csrf
+                        @method('put')
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Name</label>
+                                <input type="text" class="form-control" name="name" value="{{Auth::User()->name}}">
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="email" value="{{Auth::user()->email}}">
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label>Surname</label>
+                                <input type="text" class="form-control" name="surname" value="{{Auth::User()->surname}}">
                             </div>
-                            <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="password" value="{{Auth::user()->password}}">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" value="{{Auth::User()->username}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" class="form-control" name="email" value="{{Auth::User()->email}}">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" value="{{Auth::User()->password}}">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Nif</label>
+                                <input type="text" class="form-control" name="nif" value="{{Auth::User()->nif}}">
                             </div>
-                            <div class="form-group row">
-                                <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="username" value="{{Auth::user()->username}}">
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label>Telephone</label>
+                                <input type="text" class="form-control" name="telephone" value="{{Auth::User()->telephone}}">
                             </div>
-                            <div class="form-group row">
-                                <label for="inputNif" class="col-sm-2 col-form-label">Nif</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nif" value="{{Auth::user()->nif}}">
-                                </div>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Activate Email Notifications</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+
+
+
+
+
+{{--
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Name:</label>
+                                <input type="text" class="form-control" name="name" value="{{Auth::User()->name}}">
                             </div>
-                            <div class="form-group row">
-                                <label for="inputTelephone" class="col-sm-2 col-form-label">Telephone</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="telephone" value="{{Auth::user()->telephone}}">
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label>Surname:</label>
+                                <input type="text" class="form-control" name="surname" value="{{Auth::User()->surname}}">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Recibir notificaciones
-                                        </label>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label>Username:</label>
+                                <input type="text" class="form-control" name="username" value="{{Auth::User()->username}}">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" class="form-control" name="email" value="{{Auth::User()->email}}">
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <label>Password:</label>
+                                <input type="password" class="form-control" name="password" value="{{Auth::User()->password}}">
+                            </div>
+                            <div class="form-group">
+                                <label>NIF:</label>
+                                <input type="text" class="form-control" name="nif" value="{{Auth::User()->nif}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Telephone:</label>
+                                <input type="text" class="form-control" name="telephone" value="{{Auth::User()->telephone}}">
+                            </div>
+                        <button type="submit">SAVE</button>
+
+                        </div>
+                    </form>--}}
             <!-- /.container-fluid -->
 
         </div>

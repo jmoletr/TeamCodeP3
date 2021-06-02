@@ -57,11 +57,26 @@
             <form action="" method="">
             <div class="form-group">
                 <label for="work_clase">Clase</label>
-                <input class="form-control" id="work_clase" type="number" placeholder="clase" name="work_clase" value={{$work->nameClass}}>
+                <select class="form-control">
+                    @foreach($class as $clase)
+                        <option value={{$clase->id_class}}>{{$clase->name}}</option>
+                    @endforeach
+                </select>
+                <!-- <input class="form-control" id="work_clase" type="number" placeholder="clase" name="work_clase" value={{$work->nameClass}}> -->
                 <label for="work_student">Estudiante</label>
-                <input class="form-control" id="work_student" type="number" placeholder="student" name="work_student" value={{$work->name}} {{$work->surname}}>
+                <select class="form-control">
+                    @foreach($students as $student)
+                        <option value={{$student->id}}>{{$student->name}} {{$student->surname}}</option>
+                    @endforeach
+                </select>
+                <!-- <input class="form-control" id="work_student" type="number" placeholder="student" name="work_student" value={{$work->name}} {{$work->surname}}> -->
                 <label for="work_name">Trabajo</label>
-                <input class="form-control" id="work_name" type="text" placeholder="nombre trabajo" name="work_name" value={{$work->workname}}>
+                <select class="form-control">
+                    @foreach($allworks as $allw)
+                        <option value={{$allw->id_work}}>{{$allw->name}}</option>
+                    @endforeach
+                </select>
+                <!-- <input class="form-control" id="work_name" type="text" placeholder="nombre trabajo" name="work_name" value={{$work->workname}}> -->
                 <label for="work_mark">Calificación</label>
                 <input class="form-control" id="work_mark" type="number" placeholder="Calificación" name="work_mark" value={{$work->mark}}>
             </div>

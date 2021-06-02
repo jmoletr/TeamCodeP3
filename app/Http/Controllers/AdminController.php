@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Work;
 
 class AdminController extends Controller
 {
@@ -79,6 +80,17 @@ class AdminController extends Controller
             DB::table('works')
                 ->where('id_work',$idWork)
                 ->delete();
+        }else if($request->only('modificacion')){
+            
+            if($request->input('modificacion')=='modificacionWork'){
+                //consulta de update
+               //dd($request->all());
+                DB::table('works')
+                        ->where('id_work', $request->work )
+                        ->update(['id_student' => $request->student, 'mark' => $request->work_mark ]);
+            }
+            
+        
         }
     }
        

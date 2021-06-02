@@ -12,6 +12,7 @@ class Work extends Model
     protected $table="works";
     protected $primaryKey="id_work";
     protected $fillable = [
+        'id_work',
         'id_class',
         'id_student',
         'name',

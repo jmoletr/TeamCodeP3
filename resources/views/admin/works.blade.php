@@ -54,37 +54,40 @@
             </button>
         </div>
         <div class="modal-body">
-            <form action="" method="">
+            <form action="/admin" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="work_clase">Clase</label>
-                <select class="form-control">
+                <!-- <select class="form-control" name="x">
                     @foreach($class as $clase)
                         <option value={{$clase->id_class}}>{{$clase->name}}</option>
                     @endforeach
-                </select>
-                <!-- <input class="form-control" id="work_clase" type="number" placeholder="clase" name="work_clase" value={{$work->nameClass}}> -->
+                </select> -->
+                <p class="lead">
+                {{$work->nameClass}}
+                </p>
                 <label for="work_student">Estudiante</label>
-                <select class="form-control">
+                <select class="form-control" name="student">
                     @foreach($students as $student)
                         <option value={{$student->id}}>{{$student->name}} {{$student->surname}}</option>
                     @endforeach
                 </select>
-                <!-- <input class="form-control" id="work_student" type="number" placeholder="student" name="work_student" value={{$work->name}} {{$work->surname}}> -->
                 <label for="work_name">Trabajo</label>
-                <select class="form-control">
+                <select class="form-control" name="work">
                     @foreach($allworks as $allw)
                         <option value={{$allw->id_work}}>{{$allw->name}}</option>
                     @endforeach
                 </select>
-                <!-- <input class="form-control" id="work_name" type="text" placeholder="nombre trabajo" name="work_name" value={{$work->workname}}> -->
                 <label for="work_mark">Calificación</label>
                 <input class="form-control" id="work_mark" type="number" placeholder="Calificación" name="work_mark" value={{$work->mark}}>
+                <hr>
+                <input type="submit" class="btn btn-primary" name="modificacion" value="modificacionWork">
             </div>
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
         </div>
     </div>

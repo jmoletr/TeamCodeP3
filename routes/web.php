@@ -38,4 +38,6 @@ Route::get('/teacher', [App\Http\Controllers\TeacherController::class, 'index'])
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
+Route::post('/admin', [App\Http\Controllers\AdminController::class, 'store'])->name('admin');
+
 

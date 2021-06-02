@@ -120,44 +120,6 @@
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
 
-
-
-
-
-{{--
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Name:</label>
-                                <input type="text" class="form-control" name="name" value="{{Auth::User()->name}}">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Surname:</label>
-                                <input type="text" class="form-control" name="surname" value="{{Auth::User()->surname}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Username:</label>
-                                <input type="text" class="form-control" name="username" value="{{Auth::User()->username}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Email:</label>
-                                <input type="email" class="form-control" name="email" value="{{Auth::User()->email}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Password:</label>
-                                <input type="password" class="form-control" name="password" value="{{Auth::User()->password}}">
-                            </div>
-                            <div class="form-group">
-                                <label>NIF:</label>
-                                <input type="text" class="form-control" name="nif" value="{{Auth::User()->nif}}">
-                            </div>
-                            <div class="form-group">
-                                <label>Telephone:</label>
-                                <input type="text" class="form-control" name="telephone" value="{{Auth::User()->telephone}}">
-                            </div>
-                        <button type="submit">SAVE</button>
-
-                        </div>
-                    </form>--}}
             <!-- /.container-fluid -->
 
         </div>

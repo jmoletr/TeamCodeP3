@@ -47,13 +47,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/">
-                <span></span>
+            <a class="nav-link" href="/">
+                <span>Home</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/">
-                <span></span>
+            <a class="nav-link" href="/student/">
+                <span>Panel Estudiante</span>
             </a>
     </ul>
 
@@ -73,12 +73,9 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Panel Estudiante</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Estas inscrito en los siguientes Cursos:</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-user fa-sm text-white-50"></i> Generate Report</a>
-                </div>
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h3 class="h3 mb-0 text-gray-800">Estas inscrito en los siguientes Cursos:</h3>
                 </div>
                 <div class="row">
                     @if(Session::get('Listo'))

@@ -35,7 +35,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">WELCOME</div>
+            <div class="sidebar-brand-text mx-3">BIENVENIDO</div>
         </a>
 
         <!-- Divider -->
@@ -43,11 +43,20 @@
         <hr class="sidebar-divider my-0">
         <li class="nav-item">
             <a class="nav-link">
-                <span><strong>PROFILE</strong></span>
+                <span><strong>PERFIL USUARIO</strong></span>
             </a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="/">
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/student/">
+                <span></span>
+            </a>
     </ul>
+
 
     <!-- End of Sidebar -->
 
@@ -65,7 +74,7 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Edit your account</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Edita los datos de tu perfil de usuario</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-user fa-sm text-white-50"></i> Generate Report</a>
                 </div>
@@ -82,11 +91,11 @@
                         @method('put')
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>Name</label>
+                                <label>Nombre</label>
                                 <input type="text" class="form-control" name="name" value="{{Auth::User()->name}}">
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Surname</label>
+                                <label>Apellido</label>
                                 <input type="text" class="form-control" name="surname" value="{{Auth::User()->surname}}">
                             </div>
                         </div>
@@ -95,7 +104,7 @@
                             <input type="text" class="form-control" name="username" value="{{Auth::User()->username}}">
                         </div>
                         <div class="form-group">
-                            <label>Email address</label>
+                            <label>Email</label>
                             <input type="email" class="form-control" name="email" value="{{Auth::User()->email}}">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
@@ -105,19 +114,19 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>Nif</label>
+                                <label>NIF</label>
                                 <input type="text" class="form-control" name="nif" value="{{Auth::User()->nif}}">
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Telephone</label>
+                                <label>Teléfono</label>
                                 <input type="text" class="form-control" name="telephone" value="{{Auth::User()->telephone}}">
                             </div>
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Activate Email Notifications</label>
+                            <label class="form-check-label" for="exampleCheck1">Activar notificaciones al Correo</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
 
             <!-- /.container-fluid -->

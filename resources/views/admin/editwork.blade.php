@@ -8,6 +8,9 @@
                 <label for="work_student">Estudiante</label>
                 <select class="form-control" name="student">
                     @foreach($students as $student)
+                        @if($student->id==(int)$idstudent)
+                            <option selected="selected" value={{$student->id}}>{{$student->name}} {{$student->surname}}</option>
+                        @endif
                         <option value={{$student->id}}>{{$student->name}} {{$student->surname}}</option>
                     @endforeach
                     
@@ -19,7 +22,6 @@
                 
                     @foreach($allworks as $allw)
                         @if($allw->id_work==(int)$idthiswork)
-                        <?php //dd('pso if id'); ?>
                             <option selected="selected" value={{$allw->id_work}}>{{$allw->name}}</option>
                         @endif
                             <option value={{$allw->id_work}}>{{$allw->name}}</option>

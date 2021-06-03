@@ -18,7 +18,7 @@
                 <tr>
                     <td>Alumno</td>
                     <td>Nombre de Clase (Asignatura)</td>
-                    <td>Nombre de trabado</td>
+                    <td>Nombre del trabajo</td>
                     <td>Calificación</td>
                     <td>&nbsp;</td>
                 </tr>

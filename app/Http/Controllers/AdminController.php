@@ -78,6 +78,22 @@ class AdminController extends Controller
             
             return view('admin.works', ['works'=>$works, 'class'=>$clase, 'courses'=>$courses, 'students'=>$students,'allworks'=>$allworks]);
         }else if($request->only('listarexamenes')){
+            $temp = $request->only('listarexamenes');
+            $arraytemp = explode("+", $temp['listarexamenes']);
+            $idStudent=$arraytemp[0];
+            $idClass=$arraytemp[1];
+            $class = DB::table('class') -> select('class.*')->where('id_class',$idClass)->get();
+            $student = DB::table('users') -> select('users.*')->where('id',$idStudent)->where('rol_id','3 ')->get();
+            $exams = DB::table('exams')
+                    ->select('exams.*','exams.name as workname','users.name AS username','users.surname AS apellido','class.*')
+                    ->join('users', 'users.id','=','exams.id_student')
+                    ->join('class', 'class.id_class','=','exams.id_class')
+                    ->get();
+
+                return view('admin.exams', ['exams'=>$exams,'class'=>$class,]);
+
+
+
         }else if($request->only('borrartrabajos')){
             $idWork = $request->only('borrartrabajos');
             DB::table('works')

@@ -84,7 +84,9 @@ class AdminController extends Controller
                 ->where('id_work',$idWork)
                 ->delete();
         }else if($request->only('editartrabajos')){
+            //dd($request->only('editartrabajos'));
             $idThisWork=$request->only('editartrabajos');
+            //dd($idThisWork['editartrabajos']); //devuelve bien
             $students = DB::table('users')
                             ->select('users.*')
                             ->where('rol_id','3')
@@ -92,7 +94,7 @@ class AdminController extends Controller
             $allworks = DB::table('works')
                             ->select('works.*')
                             ->get();
-            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'work'=>$idThisWork]);
+            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos']]);
         
         }else if($request->only('updateWork')){
             

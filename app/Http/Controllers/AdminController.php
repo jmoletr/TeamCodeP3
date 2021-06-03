@@ -107,7 +107,7 @@ class AdminController extends Controller
                 DB::table('works')
                         ->where('id_work', $request->work )
                         ->update(['id_student' => $request->student, 'mark' => $request->work_mark ]);
-
+                session(['Listo'=>'Datos actualizados Correctamente']);
                 return back();
             }
             

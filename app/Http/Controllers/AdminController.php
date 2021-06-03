@@ -128,6 +128,17 @@ class AdminController extends Controller
             }
             
         
+        }else if($request->only('editarexamenes')){
+            $idThisExam=$request->only('editarexamenes');
+            $students = DB::table('users')
+                ->select('users.*')
+                ->where('rol_id','3')
+                ->get();
+            $exam = DB::table('exams')->select('exams.*')->where('id_exam',$idThisExam)->get();
+            $clase = DB::table('class')
+                ->select('class.*')
+                ->get();
+            return view('admin.editexam',['class'=>$clase,'students'=>$students,'exams'=>$exam]);
         }
     }
        

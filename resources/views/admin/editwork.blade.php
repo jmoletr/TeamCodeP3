@@ -29,7 +29,7 @@
                 </select>
                 
                 <label for="work_mark">Calificación</label>
-                <input required class="form-control" id="work_mark" type="number" placeholder="Calificación" name="work_mark">
+                <input required class="form-control" id="work_mark" type="number" placeholder="Calificación" name="work_mark" value={{$markwork}}>
                 <hr>
                 <input type="submit" class="btn btn-primary" name="modificacion" value="modificacionWork">
             </div>

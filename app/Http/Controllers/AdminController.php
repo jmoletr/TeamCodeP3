@@ -87,6 +87,7 @@ class AdminController extends Controller
             //dd($request->only('editartrabajos'));
             $idThisWork=$request->only('editartrabajos');
             $idstudent = $request->only('idstudent');
+            $markwork = $request->only('mark_work');
             //dd($idThisWork['editartrabajos']); //devuelve bien
             $students = DB::table('users')
                             ->select('users.*')
@@ -95,7 +96,7 @@ class AdminController extends Controller
             $allworks = DB::table('works')
                             ->select('works.*')
                             ->get();
-            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent['idstudent']]);
+            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent['idstudent'],'markwork'=>$markwork['mark_work']]);
         
         }else if($request->only('updateWork')){
             

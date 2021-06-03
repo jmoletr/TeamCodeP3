@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('contenido')
+
 <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Panel de Trabajos</h1>
@@ -24,16 +25,17 @@
                 </tr>
             </thead>
             <tbody>
-            <?php // dd($works) ?>
-            @foreach($works as $work)
+            <?php //dd($works) ?>
+            @foreach($examns as $exam)
             <tr>
-                <td>{{$work->name}} {{$work->surname}}</td>
-                <td>{{$work->nameClass}}</td>
-                <td>{{$work->workname}}</td>
-                <td>{{$work->mark}}</td>
+                <td>{{$exam->name}} {{$work->surname}}</td>
+                <td>{{$exam->nameClass}}</td>
+                <td>{{$exam->workname}}</td>
+                <td>{{$exam->mark}}</td>
                 <td>
-                        <form action="#" method="POST">
+                        <form action="/admin" method="POST">
                         @csrf
+                            <input type="hidden" id="idtrabajo" name="idtrabajo" value={{$work->id_work}}>
                             <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->id_work}}> <i class="fas fa-edit"></i>Editar</button>
                             <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->id_work}}> <i class="fas fa-trash"></i>Eliminar</button>
                         </form>
@@ -72,10 +74,15 @@
                         <option value={{$student->id}}>{{$student->name}} {{$student->surname}}</option>
                     @endforeach
                 </select>
+                <?php dd(session('id_work'));?>
                 <label for="work_name">Trabajo</label>
                 <select class="form-control" name="work">
                     @foreach($allworks as $allw)
-                        <option value={{$allw->id_work}}>{{$allw->name}}</option>
+                        @if($allw->id_work==Session::get('id_work'))
+                        
+                            <option selected="selected" value={{allw->id_work}}> seleccionado</option>
+                        @endif
+                            <option value={{$allw->id_work}}>{{$allw->name}}</option>
                     @endforeach
                 </select>
                 <label for="work_mark">Calificación</label>

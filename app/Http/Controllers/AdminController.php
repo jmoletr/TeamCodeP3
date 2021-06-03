@@ -8,6 +8,7 @@ use App\Models\Work;
 
 class AdminController extends Controller
 {
+    
     /**
      * Create a new controller instance.
      *
@@ -60,35 +61,50 @@ class AdminController extends Controller
                 ->where('works.id_student',$idStudent)
                 ->where('works.id_class', $idClass)
                 ->get();
-            $class = DB::table('class')
-                ->select('class.*')
-                ->get();
-            $courses = DB::table('courses')
-                ->select('courses.*')
-                ->get();
-            $students = DB::table('users')
-                ->select('users.*')
-                ->where('rol_id','3')
-                ->get();
-            $allworks = DB::table('works')
-                ->select('works.*')
-                ->get();
-            return view('admin.works', ['works'=>$works, 'class'=>$class, 'courses'=>$courses, 'students'=>$students,'allworks'=>$allworks]);
+
+                $clase = DB::table('class')
+                            ->select('class.*')
+                            ->get();
+                $courses = DB::table('courses')
+                            ->select('courses.*')
+                            ->get();
+                $students = DB::table('users')
+                            ->select('users.*')
+                            ->where('rol_id','3')
+                            ->get();
+                $allworks = DB::table('works')
+                            ->select('works.*')
+                            ->get();
+            
+            return view('admin.works', ['works'=>$works, 'class'=>$clase, 'courses'=>$courses, 'students'=>$students,'allworks'=>$allworks]);
         }else if($request->only('listarexamenes')){
         }else if($request->only('borrartrabajos')){
             $idWork = $request->only('borrartrabajos');
             DB::table('works')
                 ->where('id_work',$idWork)
                 ->delete();
-        }else if($request->only('modificacion')){
+        }else if($request->only('editartrabajos')){
+            $idThisWork=$request->only('editartrabajos');
+            $students = DB::table('users')
+                            ->select('users.*')
+                            ->where('rol_id','3')
+                            ->get();
+            $allworks = DB::table('works')
+                            ->select('works.*')
+                            ->get();
+            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'work'=>$idThisWork]);
+        
+        }else if($request->only('updateWork')){
             
-            if($request->input('modificacion')=='modificacionWork'){
+            
                 //consulta de update
-               //dd($request->all());
+               dd($request->all());
                 DB::table('works')
                         ->where('id_work', $request->work )
                         ->update(['id_student' => $request->student, 'mark' => $request->work_mark ]);
-            }
+
+                return back();
+            
             
         
         }

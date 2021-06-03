@@ -98,17 +98,18 @@ class AdminController extends Controller
                             ->get();
             return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent['idstudent'],'markwork'=>$markwork['mark_work']]);
         
-        }else if($request->only('updateWork')){
+        }else if($request->only('modificacion')){
+            //dd($request->only('modificacion')); 
             
-            
+            if($request->only('modificacion')['modificacion']=='modificacionWork'){
                 //consulta de update
-               dd($request->all());
+               //dd($request->all());
                 DB::table('works')
                         ->where('id_work', $request->work )
                         ->update(['id_student' => $request->student, 'mark' => $request->work_mark ]);
 
                 return back();
-            
+            }
             
         
         }

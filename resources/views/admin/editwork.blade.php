@@ -12,15 +12,15 @@
                     @endforeach
                     
                 </select>
-                <?php dd($allworks);?>
+                <?php //dd($allworks);?>
                 <label for="work_name">Trabajo</label>
                 
                 <select class="form-control" name="work">
                 
                     @foreach($allworks as $allw)
-                        @if($allw->id_work===$idthiswork)
-                        <?php dd('pso if id'); ?>
-                            <option selected="selected" value={{$allw->id_work}}>¡ {{$allw->name}}</option>
+                        @if($allw->id_work==(int)$idthiswork)
+                        <?php //dd('pso if id'); ?>
+                            <option selected="selected" value={{$allw->id_work}}>{{$allw->name}}</option>
                         @endif
                             <option value={{$allw->id_work}}>{{$allw->name}}</option>
                     @endforeach

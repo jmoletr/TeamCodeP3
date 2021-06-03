@@ -48,13 +48,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/">
-                <span>CURSOS ACTUALES:</span>
+                <span></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>CURSOS ACTUALES:</span>
+                <span></span>
             </a>
     </ul>
 
@@ -78,32 +77,40 @@
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-user fa-sm text-white-50"></i> Generate Report</a>
                 </div>
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h3 class="h3 mb-0 text-gray-800">Estas inscrito en los siguientes Cursos:</h3>
+                </div>
                 <div class="row">
-                    @if($message = Session::get('Listo'))
+                    @if(Session::get('Listo'))
                         <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
                             <h5>Mensaje: </h5>
-                            <span>{{ $message }}</span>
+                            <span>{{  $value = session('Listo') }}</span>
                         </div>
                     @endif
                     <table class="table col-12 table-responsive">
                         <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>Nombre</td>
-                            <td>Email</td>
-                            <td>username</td>
-                            <td>&nbsp;</td>
+                            <td>Curso</td>
+                            <td>Descripción</td>
+                            <td>Data Inicio</td>
+                            <td>Data Final</td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($students as $student)
+                        @foreach($asignaturas as $asignatura)
                             <tr>
-                                <td>{{$student->id}}</td>
-                                <td>{{$student->name}}</td>
-                                <td>{{$student->email}}</td>
-                                <td>{{$student->username}}</td>
+                                <td>{{$asignatura->name}}</td>
+                                <td>{{$asignatura->description}}</td>
+                                <td>{{$asignatura->date_start}}</td>
+                                <td>{{$asignatura->date_end}}</td>
                                 <td>
-                                    <button class="btn btn-round"> <i class="fa fa-trash"></i></button>
+                                    <form action="/student" method="POST">
+                                        @csrf
+                                        <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver detalles</button>
+                                    <!-- ¿Dato calculado? <button class="btn btn-round" type="submit" name="modificarEC" value={{$asignatura->id}}><i class="fas fa-poll-h"></i>Modificar EC</button> -->
+                                        <button class="btn btn-round" type="submit" name="modificarporcentaje" value={{$asignatura->id}}><i class="fas fa-percent"></i> de EC</button>
+
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -111,11 +118,8 @@
                     </table>
                 </div>
             </div>
-
-
-            <!-- /.container-fluid -->
-
         </div>
+            <!-- /.container-fluid -->
         <!-- End of Main Content -->
 
         <!-- Footer -->

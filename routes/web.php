@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () { return view('welcome');});
-
-Route::get('/profile', function() { return view('profile');});
-
 Route::get('/ver/{id}', 'App\Http\Controllers\ProfileController@index');
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@index');
-Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
-Route::post('/profile/edit', 'App\Http\Controllers\ProfileController@editProfile');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile.store');
 //Route::get('/student', 'App\Http\Controllers\StudentController@showCourses');
+Route::get('profile/{user}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('profile/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
 
 
 Auth::routes();

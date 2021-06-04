@@ -33,12 +33,12 @@
                 <td>{{$exam->workname}}</td>
                 <td>{{$exam->mark}}</td>
                 <td>
-                        <form action="/admin" method="POST">
+                    <form action="/admin" method="POST">
                         @csrf
-                            <input type="hidden" id="idtrabajo" name="idtrabajo" value={{$work->id_work}}>
-                            <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->id_work}}> <i class="fas fa-edit"></i>Editar</button>
-                            <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->id_work}}> <i class="fas fa-trash"></i>Eliminar</button>
-                        </form>
+                        <input type="hidden" id="idtrabajo" name="idtrabajo" value={{$work->id_work}}>
+                        <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->id_work}}> <i class="fas fa-edit"></i>Editar</button>
+                        <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->id_work}}> <i class="fas fa-trash"></i>Eliminar</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -79,7 +79,7 @@
                 <select class="form-control" name="work">
                     @foreach($allworks as $allw)
                         @if($allw->id_work==Session::get('id_work'))
-                        
+
                             <option selected="selected" value={{allw->id_work}}> seleccionado</option>
                         @endif
                             <option value={{$allw->id_work}}>{{$allw->name}}</option>

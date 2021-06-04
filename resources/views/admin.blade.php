@@ -11,6 +11,7 @@
             <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
                 <h5>Mensaje: </h5>
                 <span>{{  $value = session('Listo') }}</span>
+                @php session(['Listo'=>null]) @endphp
             </div>
         @endif
         <table class="table col-12 table-responsive">
@@ -18,15 +19,29 @@
                 <tr>
                     <td>Estudiante</td>
                     <td>Curso</td>
+                    <td>Nota Final</td>
                     <td>Ver detalles</td>
                 </tr>
             </thead>
             <tbody>
+            <?php // dd($notas) ?>
             @foreach($asignaturas as $asignatura)
                 <tr>
-                    <td>Alumno: {{$asignatura->name}} {{$asignatura->surname}}</td>
-                    <td>Curso: {{$asignatura->description}}</td>
-                    <td>
+                    <td>{{$asignatura->name}} {{$asignatura->surname}}</td>
+                    <td>{{$asignatura->description}}</td>
+                    <?php // dd($notas) ?>
+                    @foreach($notas as $nota)
+                        @if ($asignatura->id_course == $nota->id_course)
+                        @php
+                            $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100)); 
+                            $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
+                        @endphp
+                        <td>{{$notacalculada}}</td>  
+                        @break;      
+                        @endif
+                        
+                    @endforeach
+                    <td> 
                         <form action="/admin" method="POST">
                         @csrf
                             <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver detalles</button>

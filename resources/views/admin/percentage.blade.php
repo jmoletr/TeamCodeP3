@@ -17,27 +17,31 @@
             <thead>
                 <tr>
                     <td>Alumno</td>
-                    <td>Nombre de Clase (Asignatura)</td>
-                    <td>Nombre del trabajo</td>
-                    <td>Calificación</td>
+                    <td>Nombre de la Clase</td>
+                    <td>Nombre del curso</td>
+                    <td>% de Ev. Contínua</td>
+                    <td>% del examen final</td>
                     <td>&nbsp;</td>
                 </tr>
             </thead>
             <tbody>
-            <?php // dd($works) ?>
-            @foreach($works as $work)
+            <?php  //dd($porcent); ?>
+            @foreach($porcent as $por)
             <tr>
-                <td>{{$work->name}} {{$work->surname}}</td>
-                <td>{{$work->nameClass}}</td>
-                <td>{{$work->workname}}</td>
-                <td>{{$work->mark}}</td>
+                <td>{{$por->nameStudent}} {{$por->apellido}}</td>
+                <td>{{$por->clase}}</td>
+                <td>{{$por->curso}}</td>
+                <td>{{$por->continuous_assessment}}</td>
+                <td>{{$por->exams}}</td>
                 <td>
                         <form action="#" method="POST">
                         @csrf
-                            <input type="hidden" name="mark_work" value={{$work->mark}}>
-                            <input type="hidden" name="idstudent" value={{$work->id_student}}>
-                            <button class="btn btn-round btn-primary" type="submit" name="editartrabajos" value={{$work->id_work}}> <i class="fas fa-edit"></i>Editar</button>
-                            <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos" value={{$work->id_work}}> <i class="fas fa-trash"></i>Eliminar</button>
+                            <input type="hidden" name="idclass" value={{$por->classid}}>
+                            <input type="hidden" name="idcourse" value={{$por->courseid}}>
+                            <input type="hidden" name="idstudent" value={{$por->studentId}}>
+                            <input type="hidden" name="ec" value={{$por->continuous_assessment}}>
+                            <input type="hidden" name="exam" value={{$por->exams}}>
+                            <button class="btn btn-round btn-primary" type="submit" name="editarporcentaje" value={{$por->id_percentage}}> <i class="fas fa-edit"></i>Editar</button>
                         </form>
                 </td>
             </tr>

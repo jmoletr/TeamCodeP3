@@ -56,7 +56,8 @@ class AdminController extends Controller
                 ->join('users', 'users.id', '=', 'enrollment.id_student')
                 ->where('enrollment.id_student',$idStudent)
                 ->get();
-        
+
+                
             return view('admin.clases', ['clases'=>$clases]);
         }else if($request->only('listartrabajos')){
             $temp = $request->only('listartrabajos');
@@ -102,7 +103,7 @@ class AdminController extends Controller
                     ->where('exams.id_class',$idClass)
                     ->get();
 
-                return view('admin.exams', ['exams'=>$exams,'class'=>$class,]);
+            return view('admin.exams', ['exams'=>$exams,'class'=>$class,]);
 
 
 

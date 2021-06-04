@@ -96,12 +96,13 @@ class AdminController extends Controller
             $class = DB::table('class') -> select('class.*')->where('id_class',$idClass)->get();
             $student = DB::table('users') -> select('users.*')->where('id',$idStudent)->where('rol_id','3 ')->get();
             $exams = DB::table('exams')
-                    ->select('exams.*','exams.name as workname','users.name AS username','users.surname AS apellido','class.*')
+                    ->select('exams.*','exams.name as workname','users.name AS username','users.surname AS apellido','class.name AS nameclass')
                     ->join('users', 'users.id','=','exams.id_student')
                     ->join('class', 'class.id_class','=','exams.id_class')
                     ->where('exams.id_student', $idStudent)
                     ->where('exams.id_class',$idClass)
                     ->get();
+            //dd($exams);
 
             return view('admin.exams', ['exams'=>$exams,'class'=>$class,]);
 

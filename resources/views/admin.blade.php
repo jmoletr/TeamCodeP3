@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php // dd($notas) ?>
+            <?php  //dd($asignaturas) ?>
             @foreach($asignaturas as $asignatura)
                 <tr>
                     <td>{{$asignatura->name}} {{$asignatura->surname}}</td>
@@ -32,14 +32,13 @@
                     <?php // dd($notas) ?>
                     @foreach($notas as $nota)
                         @if ($asignatura->id_course == $nota->id_course)
-                        @php
-                            $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100)); 
-                            $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
-                        @endphp
-                        <td>{{$notacalculada}}</td>  
-                        @break;      
+                            @php
+                                $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100)); 
+                                $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
+                            @endphp
+                            <td>{{$notacalculada}}</td>  
+                            @break;      
                         @endif
-                        
                     @endforeach
                     <td> 
                         <form action="/admin" method="POST">

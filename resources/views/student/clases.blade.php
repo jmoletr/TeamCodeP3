@@ -16,8 +16,8 @@
         <table class="table col-12 table-responsive">
             <thead>
             <tr>
-                <td>Asignatura</td>
-                <td>Curso</td>
+                <td><strong>Asignatura</strong></td>
+                <td><strong>Curso</strong></td>
                 <td>&nbsp;</td>
             </tr>
             </thead>

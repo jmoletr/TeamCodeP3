@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 @section('contenido')
 <!-- Page Heading -->

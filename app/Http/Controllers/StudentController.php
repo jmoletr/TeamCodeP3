@@ -20,10 +20,10 @@ class StudentController extends Controller
     }
 
     public function index(){
-        $students = DB::table('students')
+       /* $students = DB::table('students')
             ->select('students.*')
             ->orderby('id','DESC')
-            ->get();
+            ->get();*/
         $asignaturas = DB::table('users')
             ->select('id','courses.name','courses.description','courses.id_course', 'courses.date_start', 'courses.date_end')
             ->join('enrollment', 'users.id', '=', 'id_student')
@@ -77,39 +77,6 @@ class StudentController extends Controller
 
             return view('student.works', ['works'=>$works, 'class'=>$clase, 'courses'=>$courses, 'students'=>$students,'allworks'=>$allworks]);
         }else if($request->only('listarexamenes')){
-        }else if($request->only('borrartrabajos')){
-            $idWork = $request->only('borrartrabajos');
-            DB::table('works')
-                ->where('id_work',$idWork)
-                ->delete();
-        }else if($request->only('editartrabajos')){
-            //dd($request->only('editartrabajos'));
-            $idThisWork=$request->only('editartrabajos');
-            $idstudent = $request->only('idstudent');
-            $markwork = $request->only('mark_work');
-            //dd($idThisWork['editartrabajos']); //devuelve bien
-            $students = DB::table('users')
-                ->select('users.*')
-                ->where('rol_id','3')
-                ->get();
-            $allworks = DB::table('works')
-                ->select('works.*')
-                ->get();
-            return view('student.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent['idstudent'],'markwork'=>$markwork['mark_work']]);
-
-        }else if($request->only('modificacion')){
-            //dd($request->only('modificacion'));
-
-            if($request->only('modificacion')['modificacion']=='modificacionWork'){
-                //consulta de update
-                //dd($request->all());
-                DB::table('works')
-                    ->where('id_work', $request->work )
-                    ->update(['id_student' => $request->student, 'mark' => $request->work_mark ]);
-                session(['Listo'=>'Datos actualizados Correctamente']);
-                return back();
-            }
-
 
         }
     }

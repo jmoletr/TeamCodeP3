@@ -48,7 +48,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/">
-                <span>PANEL ADMINISTRADOR:</span>
+                <span>PANEL PROFESOR:</span>
             </a>
         </li>
         <li class="nav-item">

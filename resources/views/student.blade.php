@@ -87,10 +87,11 @@
                     <table class="table col-12 table-responsive">
                         <thead>
                         <tr>
-                            <td>Curso</td>
-                            <td>Descripción</td>
-                            <td>Data Inicio</td>
-                            <td>Data Final</td>
+                            <td><strong>Curso</strong></td>
+                            <td><strong>Descripción</strong></td>
+                            <td><strong>Data Inicio</strong></td>
+                            <td><strong>Data Final</strong></td>
+
                         </tr>
                         </thead>
                         <tbody>

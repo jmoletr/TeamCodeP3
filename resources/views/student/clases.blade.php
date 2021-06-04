@@ -26,7 +26,7 @@
             @foreach($clases as $clase)
                 <tr>
                     <td>{{$clase->nameClass}}</td>
-                    <td>{{$clase->name}}</td>
+                    <td>{{$clase->coursesName}}</td>
                     <td>
                         <form action="/student" method="POST">
                             @csrf

@@ -28,10 +28,20 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    @if (Auth::User()->rol_id == 1)
+        @include('layouts.sidebarAdmin')
+    @endif
+    @if (Auth::User()->rol_id == 2)
+        @include('layouts.sidebarTeacher')
+    @endif
+    @if (Auth::User()->rol_id == 3)
+        @include('layouts.sidebarStudent')
+    @endif
+
+    {{--<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        --}}{{--<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -62,7 +72,7 @@
             </a>
         </li>
     </ul>
-
+--}}
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -106,7 +116,7 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-<!-- Profile Modal-->
+{{--<!-- Profile Modal-->
 <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -128,7 +138,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--}}
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">

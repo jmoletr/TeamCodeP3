@@ -36,8 +36,11 @@
                 <td>
                         <form action="#" method="POST">
                         @csrf
-                            <input type="hidden" name="mark_work" value={{$por->id_percentage}}>
-                            <input type="hidden" name="idstudent" value={{$por->id_percentage}}>
+                            <input type="hidden" name="idclass" value={{$por->classid}}>
+                            <input type="hidden" name="idcourse" value={{$por->courseid}}>
+                            <input type="hidden" name="idstudent" value={{$por->studentId}}>
+                            <input type="hidden" name="ec" value={{$por->continuous_assessment}}>
+                            <input type="hidden" name="exam" value={{$por->exams}}>
                             <button class="btn btn-round btn-primary" type="submit" name="editarporcentaje" value={{$por->id_percentage}}> <i class="fas fa-edit"></i>Editar</button>
                         </form>
                 </td>

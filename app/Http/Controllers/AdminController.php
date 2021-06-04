@@ -154,16 +154,12 @@ class AdminController extends Controller
                 ->select('class.*')
                 ->get();
             return view('admin.editexam',['class'=>$clase,'students'=>$students,'exams'=>$exam,'idexam'=>$idThisExam['editarexamenes'] ,'idstudent'=>$idstudent['idstudent'],'idclass'=>$class['idclass'],'markexam'=>$markexam['mark_exam']]);
-        }else if($request->only('modificarporcentaje')){
-            $asignaturaid = $request->only('modificarporcentaje');
-            $porcent = DB::table('percentage')
-                ->select('percentage.*', 'users.name AS nameStudent','users.surname AS apellido','class.name AS clase','courses.name AS curso')
-                ->join('courses','percentage.id_course','=','courses.id_course')
-                ->join('class','percentage.id_class','=','class.id_class')
-                ->join('enrollment','percentage.id_course','=','enrollment.id_course')
-                ->join('users', 'users.id','=','enrollment.id_student')
-                ->where('users.id',$asignaturaid)
-                ->get();
+        }else if($request->only('editarporcentaje')){
+            $idstudent = $request->input('idstudent');
+            $idcourse = $request->input('idcourse');
+            $idclass = $request->input('idclass');
+            $ec = $request->input('ec');
+            $exam = $request->input('exam');
             $students = DB::table('users')
                 ->select('users.*')
                 ->where('rol_id','3')
@@ -172,10 +168,26 @@ class AdminController extends Controller
                 ->select('class.*')
                 ->get();
             $courses = DB::table('courses')
-                            ->select('courses.*')
-                            ->get();
-            //dd($porcent);
-                return view('admin.percentage',['porcent'=>$porcent,'students'=>$students,'clase'=>$clase,'courses'=>$courses]);
+                ->select('courses.*')
+                ->get();
+            $percent = DB::table('percentage')
+                ->select('percentage.*')
+                ->get();
+
+            return view('admin.editporcent',['students'=>$students,'clase'=>$clase,'courses'=>$courses, 'percent'=>$percent, 'idstudent'=>$idstudent,'idcourse'=>$idcourse,'idclass'=>$idclass, 'ec'=>$ec,'exam'=>$exam]); 
+
+        
+        }else if($request->only('modificarporcentaje')){
+            $asignaturaid = $request->only('modificarporcentaje');
+            $porcent = DB::table('percentage')
+                ->select('percentage.*', 'users.name AS nameStudent','users.surname AS apellido','class.name AS clase','courses.name AS curso', 'users.id AS studentId','class.id_class AS classid','courses.id_course AS courseid')
+                ->join('courses','percentage.id_course','=','courses.id_course')
+                ->join('class','percentage.id_class','=','class.id_class')
+                ->join('enrollment','percentage.id_course','=','enrollment.id_course')
+                ->join('users', 'users.id','=','enrollment.id_student')
+                ->where('users.id',$asignaturaid)
+                ->get();
+                return view('admin.percentage',['porcent'=>$porcent]);
 
         }
 

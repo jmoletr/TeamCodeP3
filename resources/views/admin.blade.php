@@ -34,7 +34,7 @@
                         @if ($asignatura->id_course == $nota->id_course)
                         @php
                             $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100)); 
-                            $notacalculada = $notacalculada>0 ? $notacalculada : $notacalculada = '-';
+                            $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
                         @endphp
                         <td>{{$notacalculada}}</td>  
                         @break;      

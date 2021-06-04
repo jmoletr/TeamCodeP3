@@ -34,8 +34,9 @@
                 <td>
                         <form action="#" method="POST">
                         @csrf
-                            <input type="hidden" name="mark_work" value={{$exam->mark}}>
-                            <input type="hidden" name="idstudent">
+                            <input type="hidden" name="mark_exam" value={{$exam->mark}}>
+                            <input type="hidden" name="idclass" value={{$exam->id_class}}>
+                            <input type="hidden" name="idstudent" value={{$exam->id_student}}>
                             <button class="btn btn-round btn-primary" type="submit" name="editarexamenes" value={{$exam->id_exam}}> <i class="fas fa-edit"></i>Editar</button>
                             <button class="btn btn-round btn-danger" type="submit" name="borrarexamenes" value={{$exam->id_exam}}> <i class="fas fa-trash"></i>Eliminar</button>
                         </form>

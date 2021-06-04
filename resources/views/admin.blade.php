@@ -11,7 +11,7 @@
             <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
                 <h5>Mensaje: </h5>
                 <span>{{  $value = session('Listo') }}</span>
-                session(['listo'=>null])
+                @php session(['Listo'=>null]) @endphp
             </div>
         @endif
         <table class="table col-12 table-responsive">

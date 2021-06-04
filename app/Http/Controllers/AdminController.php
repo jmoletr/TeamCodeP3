@@ -88,6 +88,8 @@ class AdminController extends Controller
                     ->select('exams.*','exams.name as workname','users.name AS username','users.surname AS apellido','class.*')
                     ->join('users', 'users.id','=','exams.id_student')
                     ->join('class', 'class.id_class','=','exams.id_class')
+                    ->where('exams.id_student', $idStudent)
+                    ->where('exams.id_class',$idClass)
                     ->get();
 
                 return view('admin.exams', ['exams'=>$exams,'class'=>$class,]);
@@ -126,10 +128,23 @@ class AdminController extends Controller
                 session(['Listo'=>'Datos actualizados Correctamente']);
                 return back();
             }
+            if($request->only('modificacion')['modificacion']=='modificacionExam'){
+                //consulta de update
+               //dd($request->all());
+                DB::table('exams')
+                        ->where('id_exam', $request->work )
+                        ->update(['id_student' => $request->student, 'mark' => $request->nota ]);
+                session(['Listo'=>'Datos actualizados Correctamente']);
+                return back();
+            }
             
         
         }else if($request->only('editarexamenes')){
             $idThisExam=$request->only('editarexamenes');
+            $idstudent = $request->only('idstudent');
+            $markexam = $request->only('mark_exam');
+            $class = $request->only('idclass');
+            
             $students = DB::table('users')
                 ->select('users.*')
                 ->where('rol_id','3')
@@ -138,7 +153,7 @@ class AdminController extends Controller
             $clase = DB::table('class')
                 ->select('class.*')
                 ->get();
-            return view('admin.editexam',['class'=>$clase,'students'=>$students,'exams'=>$exam]);
+            return view('admin.editexam',['class'=>$clase,'students'=>$students,'exams'=>$exam,'idexam'=>$idThisExam['editarexamenes'] ,'idstudent'=>$idstudent['idstudent'],'idclass'=>$class['idclass'],'markexam'=>$markexam['mark_exam']]);
         }
     }
        

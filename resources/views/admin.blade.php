@@ -55,21 +55,23 @@
         </table>
         <div class="jumbotron">
             <h1 class="display-4">Zona de Altas</h1>
-            <p class="lead">Gestiona el Alta de diferentes usuarios y entidades</p>
+            <p class="lead">Gestiona la creación de diferentes las diferentes entidades</p>
             <hr class="my-4">
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/altaAdmin" role="button">Administradores y usuarios</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Cursos</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Clases</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Agendas</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Exámenes</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Trabajos de Ev.Cont</a>
-            </p>
+            
+                <form action="/admin" method="POST">
+                @csrf
+                    <button type="submit" name="crear" value="crear_cursos" class="btn btn-primary">Cursos</button>
+                    <button type="submit" name="crear" value="crear_clases" class="btn btn-primary">Clases</button>
+                    <button type="submit" name="crear" value="crear_agendas" class="btn btn-primary">Agendas</button>
+                    <button type="submit" name="crear" value="crear_examenes" class="btn btn-primary">Exámenes</button>
+                    <button type="submit" name="crear" value="crear_trabajos" class="btn btn-primary">Trabajos de Ev.Cont</button>
+                </form>
+            
         </div>
         <hr>
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-            <h1 class="display-4">Zona de Matricula</h1>
+            <h1 class="display-4">Zona de Matrícula</h1>
             <p class="lead">Realiza la matrícula de un estudiante en un curso y una clase existente</p>
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="#" role="button">Matricular</a>

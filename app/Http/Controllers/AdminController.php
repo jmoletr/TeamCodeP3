@@ -219,6 +219,26 @@ class AdminController extends Controller
 
         }
 
+        //ZONA CREACION DE ENTIDADES
+
+        if($request->only('crear')){
+            if($request->only('crear')['crear']=='crear_cursos'){
+                return view('admin.create.createcursos');               
+            }
+            if($request->only('crear')['crear']=='crear_clases'){
+                return view('admin.create.createclases');
+            }
+            if($request->only('crear')['crear']=='crear_agendas'){
+                return view('admin.create.createagenda');
+            }
+            if($request->only('crear')['crear']=='crear_examenes'){
+                return view('admin.create.createexamenes');
+            }
+            if($request->only('crear')['crear']=='crear_trabajos'){
+                return view('admin.create.createtrabajos');
+            }
+        }
+
         
     }
        

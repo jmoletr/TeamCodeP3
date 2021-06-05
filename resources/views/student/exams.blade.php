@@ -30,14 +30,6 @@
                     <td>{{$exam->name}}</td>
                     <td>{{$exam->workname}}</td>
                     <td>{{$exam->mark}}</td>
-                    {{--<td>
-                        <form action="/admin" method="POST">
-                            @csrf
-                            <input type="hidden" id="idtrabajo" name="idtrabajo">
-                            <button class="btn btn-round btn-primary" type="submit" name="editartrabajos"> <i class="fas fa-edit"></i>Editar</button>
-                            <button class="btn btn-round btn-danger" type="submit" name="borrartrabajos"> <i class="fas fa-trash"></i>Eliminar</button>
-                        </form>
-                    </td>--}}
                 </tr>
             @endforeach
             </tbody>

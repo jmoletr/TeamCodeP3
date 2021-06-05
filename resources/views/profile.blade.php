@@ -31,7 +31,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">--}}
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" >
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -48,13 +48,20 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/">
-                <span>Home</span>
+                <span>HOME</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/home') }}">
+                <span>VOLVER A PANEL</span>
+            </a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" href="/student/">
                 <span></span>
             </a>
+        </li>
     </ul>
 
 
@@ -127,10 +134,12 @@
                             <label class="form-check-label" for="exampleCheck1">Activar notificaciones al Correo</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
+                        <div style="margin-top: 30px;">   </div>
                     </form>
 
-            <!-- /.container-fluid -->
 
+            <!-- /.container-fluid -->
+                </div>
         </div>
         <!-- End of Main Content -->
 
@@ -138,7 +147,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; TeamCode 2021</span>
                 </div>
             </div>
         </footer>

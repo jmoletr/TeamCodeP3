@@ -39,8 +39,12 @@ Route::post('/student', [App\Http\Controllers\StudentController::class, 'store']
 
 Route::get('/teacher', [App\Http\Controllers\TeacherController::class, 'index'])->name('teacher');
 
+Route::post('/teacher', [App\Http\Controllers\AdminController::class, 'store'])->name('teacher');
+
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 Route::post('/admin', [App\Http\Controllers\AdminController::class, 'store'])->name('admin');
+
+Route::get('/altaAdmin', [App\Http\Controllers\AltaAdminController::class, 'index'])->name('/altaAdmin');
 
 

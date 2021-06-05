@@ -53,6 +53,31 @@
             @endforeach
             </tbody>
         </table>
+        <div class="jumbotron">
+            <h1 class="display-4">Zona de Altas</h1>
+            <p class="lead">Gestiona el Alta de diferentes usuarios y entidades</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/altaAdmin" role="button">Administradores y usuarios</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Cursos</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Clases</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Agendas</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Exámenes</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Trabajos de Ev.Cont</a>
+            </p>
+        </div>
+        <hr>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1 class="display-4">Zona de Matricula</h1>
+            <p class="lead">Realiza la matrícula de un estudiante en un curso y una clase existente</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Matricular</a>
+            </p>
+            </div>
+        </div>
+        
+
     </div>
 @endsection
 

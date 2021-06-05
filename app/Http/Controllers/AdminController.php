@@ -149,6 +149,23 @@ class AdminController extends Controller
                 session(['Listo'=>'Datos actualizados Correctamente']);
                 return back();
             }
+            if($request->only('modificacion')['modificacion']=='modificacionPorcent'){
+                //dd($request);
+                $id_percentage = $request->input('id_percentage');
+                $ec=$request->input('ec');
+                $exam_porcent= $request->input('exam_percentage');
+                //dd($request->all());
+                DB::table('percentage')
+                        ->where('id_percentage', $request->id_percentage )
+                        ->update(['continuous_assessment' => $request->ec_percent, 
+                                    'exams' => $request->exam_percent,
+                                ]);
+                session(['Listo'=>'Datos actualizados Correctamente']);
+                return back();
+            
+            }
+
+            
             
         
         }else if($request->only('editarexamenes')){
@@ -167,6 +184,7 @@ class AdminController extends Controller
                 ->get();
             return view('admin.editexam',['class'=>$clase,'students'=>$students,'exams'=>$exam,'idexam'=>$idThisExam['editarexamenes'] ,'idstudent'=>$idstudent['idstudent'],'idclass'=>$class['idclass'],'markexam'=>$markexam['mark_exam']]);
         }else if($request->only('editarporcentaje')){
+            $id_percentage = $request->only('editarporcentaje');
             $idstudent = $request->input('idstudent');
             $idcourse = $request->input('idcourse');
             $idclass = $request->input('idclass');
@@ -186,7 +204,7 @@ class AdminController extends Controller
                 ->select('percentage.*')
                 ->get();
 
-            return view('admin.editporcent',['students'=>$students,'clase'=>$clase,'courses'=>$courses, 'percent'=>$percent, 'idstudent'=>$idstudent,'idcourse'=>$idcourse,'idclass'=>$idclass, 'ec'=>$ec,'exam'=>$exam]); 
+            return view('admin.editporcent',['students'=>$students,'clase'=>$clase,'courses'=>$courses, 'percent'=>$percent, 'idstudent'=>$idstudent,'idcourse'=>$idcourse,'idclass'=>$idclass, 'ec'=>$ec,'exam'=>$exam, 'id_percentage'=>$id_percentage]); 
 
         
         }else if($request->only('modificarporcentaje')){

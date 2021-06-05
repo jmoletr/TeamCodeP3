@@ -124,15 +124,17 @@
                             <div class="form-group row">
                                 <label for="rol" class="col-md-4 col-form-label text-md-right">Indica tu rol</label>
 
-                                <div class="col-md-3 ml-4">
+                                <div class="col-md-2 ml-4">
                                     <input id="teacher" type="radio" class="form-check-input mr-3" name="rol" value="2">
                                     <label for="teacher">Profesor</label>
-
-
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <input id="student" type="radio" class="form-check-input" name="rol" value="3">
                                     <label for="student">Estudiante</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="admin" type="radio" class="form-check-input" name="rol" value="1">
+                                    <label for="admin">Administrador</label>
                                 </div>
                             </div>
 

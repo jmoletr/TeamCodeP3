@@ -45,6 +45,6 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 
 Route::post('/admin', [App\Http\Controllers\AdminController::class, 'store'])->name('admin');
 
-Route::get('/altaAdmin', [App\Http\Controllers\AltaAdminController::class, 'index'])->name('/altaAdmin');
+
 
 

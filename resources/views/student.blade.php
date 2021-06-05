@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
-
+    
+    <title>TeamCode</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Custom fonts for this template-->
     <link href="{{asset ('/dash/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link

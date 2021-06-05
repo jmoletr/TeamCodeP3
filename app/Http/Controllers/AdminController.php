@@ -241,7 +241,10 @@ class AdminController extends Controller
                 return view('admin.create.createclases',['teachers'=>$teachers,'courses'=>$courses,'agendas'=>$agendas]);
             }
             if($request->only('crear')['crear']=='crear_agendas'){
-                return view('admin.create.createagenda');
+                $clases = DB::table('class')
+                ->select('class.*')
+                ->get();
+                return view('admin.create.createagenda',['class'=>$clases]);
             }
             if($request->only('crear')['crear']=='crear_examenes'){
                 return view('admin.create.createexamenes');

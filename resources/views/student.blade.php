@@ -29,36 +29,6 @@
 
     <!-- Sidebar -->
     @include('layouts.sidebarStudent')
-    {{--<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">--}}{{--
-
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">BIENVENIDO</div>
-        </a>
-
-        <!-- Divider -->
-
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item">
-            <a class="nav-link">
-                <span><strong>PANEL ESTUDIANTE</strong></span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/">
-                <span>Home</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/student/">
-                <span>Panel Estudiante</span>
-            </a>
-        </li>
-    </ul>--}}
-
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -93,7 +63,7 @@
                             <td><strong>Descripción</strong></td>
                             <td><strong>Data Inicio</strong></td>
                             <td><strong>Data Final</strong></td>
-
+                            <td><strong>Nota Media</strong></td>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,6 +73,17 @@
                                 <td>{{$asignatura->description}}</td>
                                 <td>{{$asignatura->date_start}}</td>
                                 <td>{{$asignatura->date_end}}</td>
+                                <?php // dd($notas) ?>
+                                @foreach($notas as $nota)
+                                    @if ($asignatura->id_course == $nota->id_course)
+                                        @php
+                                            $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100));
+                                            $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
+                                        @endphp
+                                        <td>{{$notacalculada}}</td>
+                                        @break;
+                                    @endif
+                                @endforeach
                                 <td>
                                     <form action="/student" method="POST">
                                         @csrf

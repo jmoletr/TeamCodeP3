@@ -38,6 +38,7 @@ class StudentController extends Controller
             ->join('works', 'works.id_class','=','class.id_class')
             ->join('percentage','percentage.id_class','=','class.id_class')
             ->join('courses','class.id_course','=','courses.id_course')
+            ->where('users.id',Auth::User()->id)
             ->get();
        session(['asignaturas'=>$asignaturas]);
         //dd($nota);

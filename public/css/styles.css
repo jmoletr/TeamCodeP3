@@ -2948,7 +2948,7 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #0d6efd;
+  background-color: #4e73df;
   border-color: #0d6efd;
 }
 .btn-primary:hover {
@@ -7539,7 +7539,7 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  background-color: #0d6efd !important;
+  background-color: #4e73df !important;
 }
 
 .bg-secondary {
@@ -7567,7 +7567,7 @@ textarea.form-control-lg {
 }
 
 .bg-dark {
-  background-color: #0d6efd !important;
+  background-color: #4e73df !important;
 }
 
 .bg-body {

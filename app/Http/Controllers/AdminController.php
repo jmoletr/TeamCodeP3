@@ -152,8 +152,6 @@ class AdminController extends Controller
             if($request->only('modificacion')['modificacion']=='modificacionPorcent'){
                 //dd($request);
                 $id_percentage = $request->input('id_percentage');
-                $ec=$request->input('ec');
-                $exam_porcent= $request->input('exam_percentage');
                 //dd($request->all());
                 DB::table('percentage')
                         ->where('id_percentage', $request->id_percentage )

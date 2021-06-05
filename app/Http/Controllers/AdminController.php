@@ -258,7 +258,15 @@ class AdminController extends Controller
                 return view('admin.create.createexamenes',['class'=>$clases,'students'=>$students]);
             }
             if($request->only('crear')['crear']=='crear_trabajos'){
-                return view('admin.create.createtrabajos');
+
+                $clases = DB::table('class')
+                    ->select('class.*')
+                    ->get();
+                $students = DB::table('users')
+                    ->select('users.*')
+                    ->where('rol_id','3')
+                    ->get();
+                return view('admin.create.createtrabajos',['class'=>$clases,'students'=>$students]);
             }
         }
 

@@ -13,10 +13,10 @@
                                 @csrf
                                   
                                 <div class="form-group row">
-                                    <label for="nuevoexamen" class="col-md-4 col-form-label text-md-right">Nombre del exámen</label>
+                                    <label for="nuevotrabajo" class="col-md-4 col-form-label text-md-right">Nombre del trabajo</label>
 
                                     <div class="col-md-6">
-                                        <input id="nuevoexamen" type="text" class="form-control" name="nuevoexamen" required>
+                                        <input id="nuevotrabajo" type="text" class="form-control" name="nuevotrabajo" required>
                                     </div>
                                     
                                 </div>
@@ -50,10 +50,10 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="markexam" class="col-md-4 col-form-label text-md-right">Nota Exámen</label>
+                                    <label for="markwork" class="col-md-4 col-form-label text-md-right">Nota Trabajo</label>
 
                                     <div class="col-md-6">
-                                        <input id="markexam" type="number" class="form-control" name="markexam">
+                                        <input id="markwork" type="number" class="form-control" name="markwork">
                                     </div>
                                     
                                 </div>

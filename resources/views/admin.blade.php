@@ -76,9 +76,11 @@
                     <h1 class="display-4">Zona de Matrícula</h1>
                     <p class="lead">Realiza la matrícula de un estudiante</p>
                     <hr class="my-4">
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Matricular</a>
-                    </p>
+                    <form action="/admin" method="POST">
+                        @csrf
+                            <button type="submit" name="crear" value="matricula" class="btn btn-primary">Matricular</button>
+                        </form>
+                    
                     
                 </div>
             </div>

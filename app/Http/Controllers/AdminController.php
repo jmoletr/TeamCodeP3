@@ -11,6 +11,7 @@ use App\Models\Exam;
 use App\Models\Enrollment;
 use App\Models\User;
 use App\Models\Schedule;
+use App\Models\percentage;
 
 class AdminController extends Controller
 {
@@ -274,6 +275,21 @@ class AdminController extends Controller
                     ->get();
                 return view('admin.create.createtrabajos',['class'=>$clases,'students'=>$students]);
             }
+
+            if($request->only('crear')['crear']=='matricula'){
+
+                $students = DB::table('users')
+                    ->select('users.*')
+                    ->where('rol_id','3')
+                    ->get();
+                $courses = DB::table('courses')
+                    ->select('courses.*')
+                    ->get();
+                $clases = DB::table('class')
+                    ->select('class.*')
+                    ->get();
+                return view('admin.matricula.creatematricula',['students'=>$students,'courses'=>$courses, 'class'=>$clases]);
+            }
         }
         if ($request->only('crearGuardar')){
 
@@ -338,6 +354,26 @@ class AdminController extends Controller
                     $trabajos -> name = $request -> nuevotrabajo;
                     $trabajos -> mark = $request -> markwork;
                 $trabajos -> save();    
+                session(['Listo'=>'Los datos se han creado correctamente']);
+                return back();
+    
+            }
+
+            if ($request->only('crearGuardar')['crearGuardar']=='matricula'){
+                if (!$request->status){
+                    $request->status = 0;
+                }
+                $percentage = new percentage();
+                    $percentage -> id_class = $request -> id_class;
+                    $percentage -> id_course = $request -> id_course;
+                    $percentage -> continuous_assessment = $request -> ec;
+                    $percentage -> exams = $request -> porcentexam;
+                $percentage -> save();
+                $matricula = new Enrollment();
+                    $matricula -> id_student = $request -> id_student;
+                    $matricula -> id_course = $request -> id_course;
+                    $matricula -> status = $request -> status;
+                $matricula -> save();
                 session(['Listo'=>'Los datos se han creado correctamente']);
                 return back();
     

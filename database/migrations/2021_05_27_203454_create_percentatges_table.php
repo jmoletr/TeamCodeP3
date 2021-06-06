@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePercentatgesTable extends Migration
+class CreatepercentagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePercentatgesTable extends Migration
      */
     public function up()
     {
-        Schema::create('percentatges', function (Blueprint $table) {
+        Schema::create('percentages', function (Blueprint $table) {
             $table->id_percentage();
             $table->foreignId('id_course')->references('id_course')->on('courses');
             $table->foreignId('id_class')->references('id_class')->on('class');
@@ -29,6 +29,6 @@ class CreatePercentatgesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('percentatges');
+        Schema::dropIfExists('percentages');
     }
 }

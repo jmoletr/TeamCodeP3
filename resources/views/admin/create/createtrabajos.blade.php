@@ -53,14 +53,14 @@
                                     <label for="markwork" class="col-md-4 col-form-label text-md-right">Nota Trabajo</label>
 
                                     <div class="col-md-6">
-                                        <input id="markwork" type="number" class="form-control" name="markwork">
+                                        <input id="markwork" placeholder="0 para nota futura" type="number" class="form-control" name="markwork">
                                     </div>
                                     
                                 </div>
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" name="crearGuardar" value="trabajos" class="btn btn-primary">Guardar</button>
                                     </div>
                                 </div>
                                 

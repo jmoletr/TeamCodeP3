@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Work;
+use App\Models\Course;
+use App\Models\Classes;
+use App\Models\Exam;
+use App\Models\Enrollment;
+use App\Models\User;
+use App\Models\Schedule;
 
 class AdminController extends Controller
 {
@@ -269,8 +275,80 @@ class AdminController extends Controller
                 return view('admin.create.createtrabajos',['class'=>$clases,'students'=>$students]);
             }
         }
+        if ($request->only('crearGuardar')){
 
+            if ($request->only('crearGuardar')['crearGuardar']=='cursos'){
+                
+                if (!$request->active){
+                    $request->active = 0;
+                }
+                $curso = new Course();
+                    $curso->name = $request->name;
+                    $curso->description = $request->description;
+                    $curso->date_start = $request->start;
+                    $curso->date_end = $request->end;
+                    $curso->active = $request->active;
+                $curso->save();
+                session(['Listo'=>'Los datos se han creado correctamente']);
+                return back();
+
+                
+
+            }
+            if ($request->only('crearGuardar')['crearGuardar']=='clases'){
+
+                $clase = new Classes ();
+                    $clase -> id_teacher = $request -> id_teacher;
+                    $clase -> id_course = $request -> id_course;
+                    $clase -> id_schedule = $request -> id_schedule;
+                    $clase -> name = $request -> nameclass;
+                    $clase -> color = 'porDefecto';
+                $clase -> save();    
+                session(['Listo'=>'Los datos se han creado correctamente']);
+                return back();
+                    
+            }
+            if ($request->only('crearGuardar')['crearGuardar']=='agendas'){
+                //dd($request->all());
+                $agenda = new Schedule ();
+                    $agenda -> id_class = $request -> id_class;
+                    $agenda -> time_start = $request -> start;
+                    $agenda -> time_end = $request -> end;
+                    $agenda -> day = $request -> day;
+                $agenda -> save();    
+                session(['Listo'=>'Los datos se han creado correctamente']);
+                return back();
+
+            }
+            if ($request->only('crearGuardar')['crearGuardar']=='examenes'){
+                
+                $examenes = new Exam();
+                    $examenes -> id_class = $request -> id_class;
+                    $examenes -> id_student = $request -> id_student;
+                    $examenes -> name = $request -> nuevoexamen;
+                    $examenes -> mark = $request -> markexam;
+                $examenes -> save();    
+                session(['Listo'=>'Los datos se han creado correctamente']);
+                return back();
+            }
+            if ($request->only('crearGuardar')['crearGuardar']=='trabajos'){
+                $trabajos = new Work();
+                    $trabajos -> id_class = $request -> id_class;
+                    $trabajos -> id_student = $request -> id_student;
+                    $trabajos -> name = $request -> nuevotrabajo;
+                    $trabajos -> mark = $request -> markwork;
+                $trabajos -> save();    
+                session(['Listo'=>'Los datos se han creado correctamente']);
+                return back();
+    
+            }
         
+        }
+
+
+
+
+               
     }
        
 }

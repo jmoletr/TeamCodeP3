@@ -13,10 +13,10 @@
                                 @csrf
 
                                 <div class="form-group row">
-                                    <label for="id_teacher" class="col-md-4 col-form-label text-md-right">Clase</label>
+                                    <label for="id_class" class="col-md-4 col-form-label text-md-right">Clase</label>
 
                                     <div class="col-md-6">
-                                    <select id="id_teacher" class="form-control" name="id_teacher">
+                                    <select id="id_class" class="form-control" name="id_class">
                                     @foreach($class as $clas)
                                         
                                             <option value={{$clas->id_class}}>{{$clas->name}}</option>
@@ -55,7 +55,7 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" name="crearGuardar" value="agendas" class="btn btn-primary">Guardar</button>
                                     </div>
                                 </div>
                                 

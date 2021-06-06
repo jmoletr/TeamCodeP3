@@ -54,7 +54,7 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" name="crearGuardar" value="cursos" class="btn btn-primary">Guardar</button>
                                     </div>
                                 </div>
                                 

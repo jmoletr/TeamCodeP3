@@ -50,9 +50,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="date_start" class="col-md-4 col-form-label text-md-right">Fecha Comienzo</label>
+                                    <label for="id_schedule" class="col-md-4 col-form-label text-md-right">Fecha Comienzo</label>
                                     <div class="col-md-6">
-                                    <select id="id_teacher" class="form-control" name="id_teacher">
+                                    <select id="id_schedule" class="form-control" name="id_schedule">
                                     @foreach($agendas as $agenda)
                                         
                                             <option value={{$agenda->id_schedule}}>Día: {{$agenda->day}}, Comienzo: {{$agenda->time_start}}, fin: {{$agenda->time_end}}</option>
@@ -64,7 +64,7 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" name="crearGuardar" value="clases" class="btn btn-primary">Guardar</button>
                                     </div>
                                 </div>
                                 

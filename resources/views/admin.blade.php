@@ -53,29 +53,34 @@
             @endforeach
             </tbody>
         </table>
-        <div class="jumbotron">
-            <h1 class="display-4">Zona de Altas</h1>
-            <p class="lead">Gestiona la creación de diferentes las diferentes entidades</p>
-            <hr class="my-4">
-            
-                <form action="/admin" method="POST">
-                @csrf
-                    <button type="submit" name="crear" value="crear_cursos" class="btn btn-primary">Cursos</button>
-                    <button type="submit" name="crear" value="crear_clases" class="btn btn-primary">Clases</button>
-                    <button type="submit" name="crear" value="crear_agendas" class="btn btn-primary">Agendas</button>
-                    <button type="submit" name="crear" value="crear_examenes" class="btn btn-primary">Exámenes</button>
-                    <button type="submit" name="crear" value="crear_trabajos" class="btn btn-primary">Trabajos de Ev.Cont</button>
-                </form>
-            
-        </div>
-        <hr>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-            <h1 class="display-4">Zona de Matrícula</h1>
-            <p class="lead">Realiza la matrícula de un estudiante en un curso y una clase existente</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Matricular</a>
-            </p>
+        <div class="container">
+            <div class="row">
+                <div class="jumbotron">
+                    <h1 class="display-4">Zona de Altas</h1>
+                    <p class="lead">Gestiona la creación de diferentes las diferentes entidades</p>
+                    <hr class="my-4">
+                    
+                        <form action="/admin" method="POST">
+                        @csrf
+                            <button type="submit" name="crear" value="crear_cursos" class="btn btn-primary">Cursos</button>
+                            <button type="submit" name="crear" value="crear_clases" class="btn btn-primary">Clases</button>
+                            <button type="submit" name="crear" value="crear_agendas" class="btn btn-primary">Agendas</button>
+                            <button type="submit" name="crear" value="crear_examenes" class="btn btn-primary">Exámenes</button>
+                            <button type="submit" name="crear" value="crear_trabajos" class="btn btn-primary">Trabajos de Ev.Cont</button>
+                        </form>
+                    
+                </div>
+                <hr>
+                <div class="jumbotron">
+                    
+                    <h1 class="display-4">Zona de Matrícula</h1>
+                    <p class="lead">Realiza la matrícula de un estudiante</p>
+                    <hr class="my-4">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Matricular</a>
+                    </p>
+                    
+                </div>
             </div>
         </div>
         

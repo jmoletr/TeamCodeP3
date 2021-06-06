@@ -43,7 +43,7 @@
         </table>
         <div class="container">
             <div class="row">
-                <div class="jumbotron">
+                <div class="jumbotron" id="altas">
                     <h1 class="display-4">Zona de Altas</h1>
                     <p class="lead">Gestiona la creación de diferentes las diferentes entidades</p>
                     <hr class="my-4">
@@ -68,6 +68,21 @@
                         @csrf
                             <button type="submit" name="crear" value="matricula" class="btn btn-primary">Matricular</button>
                         </form>
+                    
+                    
+                </div>
+                <div class="jumbotron bg-danger text-white">
+                    
+                    <h1 class="display-4">Zona ¡DANGER!</h1>
+                    <p class="lead">ZONA DE BORRADO PERMANENTE</p>
+                    <hr class="my-4">
+                    <form action="/admin" method="POST">
+                        @csrf
+                            <button type="submit" class="btn btn-warning text-primary" name="borrar" value="usuarios" class="btn btn-primary">Borrar Usuarios</button>
+                            <button type="submit" class="btn btn-warning text-primary" name="borrar" value="cursos" class="btn btn-primary">Borrar Cursos</button>
+                            <button type="submit" class="btn btn-warning text-primary" name="borrar" value="clases" class="btn btn-primary">Borrar Clases</button>
+                            
+                    </form>
                     
                     
                 </div>

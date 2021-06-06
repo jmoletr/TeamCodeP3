@@ -127,7 +127,7 @@ class AdminController extends Controller
             //dd($request->only('editartrabajos'));
             $idThisWork=$request->only('editartrabajos');
             $idstudent = $request->input('idstudent');
-            $markwork = $request->only('mark_work');
+            $markwork = $request->input('mark_work');
             //dd($idThisWork['editartrabajos']); //devuelve bien
             $students = DB::table('users')
                             ->select('users.*')
@@ -136,7 +136,7 @@ class AdminController extends Controller
             $allworks = DB::table('works')
                             ->select('works.*')
                             ->get();
-            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent,'markwork'=>$markwork['mark_work']]);
+            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent,'markwork'=>$markwork]);
         
         }else if($request->only('modificacion')){
             //dd($request->only('modificacion')); 
@@ -381,6 +381,36 @@ class AdminController extends Controller
                 return back();
     
             }
+        
+        }
+
+        //zona borrado
+
+        if ($request->only('borrar')){
+            if ($request->only('borrar')['borrar']=='usuarios'){
+                $usuarios = DB::table('users')
+                    ->select('users.*')
+                    ->get();
+                return view('admin.delete.usuarios',['usuarios'=>$usuarios]);
+            }
+            if ($request->only('borrar')['borrar']=='cursos'){
+                //Se borraran todas las clases, etc
+                $cursos = DB::table('course')
+                    ->select('course.*')
+                    ->get();
+                return view('admin.delete.cursos',['courses'=>$cursos]);
+            }
+            if ($request->only('borrar')['borrar']=='clases'){
+                //Se borrarán tambien todos los trabajos y examenes relacionados con la clase o asignatura
+                $clases = DB::table('class')
+                    ->select('class.*')
+                    ->get();
+                return view('admin.delete.clases',['class'=>$clases]);
+                
+            }
+            if ($request->only('borrar')['borrar']=='borrarcurso'){}
+            if ($request->only('borrar')['borrar']=='borrarclase'){}
+            if ($request->only('borrar')['borrar']=='borrarusuario'){}
         
         }
 

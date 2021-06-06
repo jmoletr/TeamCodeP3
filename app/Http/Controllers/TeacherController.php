@@ -131,7 +131,7 @@ class TeacherController extends Controller
             //dd($request->only('editartrabajos'));
             $idThisWork=$request->only('editartrabajos');
             $idstudent = $request->input('idstudent');
-            $markwork = $request->only('mark_work');
+            $markwork = $request->input('mark_work');
             //dd($idThisWork['editartrabajos']); //devuelve bien
             $students = DB::table('users')
                             ->select('users.*')
@@ -140,7 +140,7 @@ class TeacherController extends Controller
             $allworks = DB::table('works')
                             ->select('works.*')
                             ->get();
-            return view('teacher.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent,'markwork'=>$markwork['mark_work']]);
+            return view('teacher.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent,'markwork'=>$markwork]);
         
         }else if($request->only('modificacion')){
             //dd($request->only('modificacion')); 

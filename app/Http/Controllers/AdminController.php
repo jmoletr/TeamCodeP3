@@ -38,18 +38,11 @@ class AdminController extends Controller
             ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
             ->where('users.rol_id','3')
             ->get();
-        $nota = DB::table('exams')
-            ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
-            ->join('users', 'exams.id_student','=','users.id')
-            ->join('class', 'exams.id_class','=', 'class.id_class')
-            ->join('works', 'works.id_class','=','class.id_class')
-            ->join('percentage','percentage.id_class','=','class.id_class')
-            ->join('courses','class.id_course','=','courses.id_course')
-            ->get();
+        
         session(['asignaturas'=>$asignaturas]);
          //dd($nota);
         //$notacalculada = (float)(($nota['notaworks'] * $nota['ec'] / 100 ) + ($nota['notaexamen'] * $nota['percentexamen'] / 100));
-        return view('admin', ['asignaturas'=>$asignaturas, 'notas'=>$nota]);
+        return view('admin', ['asignaturas'=>$asignaturas]);
     }
 
     public function store(Request $request){
@@ -63,9 +56,17 @@ class AdminController extends Controller
                 ->join('users', 'users.id', '=', 'enrollment.id_student')
                 ->where('enrollment.id_student',$idStudent)
                 ->get();
+            $nota = DB::table('exams')
+                ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
+                ->join('users', 'exams.id_student','=','users.id')
+                ->join('class', 'exams.id_class','=', 'class.id_class')
+                ->join('works', 'works.id_class','=','class.id_class')
+                ->join('percentage','percentage.id_class','=','class.id_class')
+                ->join('courses','class.id_course','=','courses.id_course')
+                ->get();
 
                 
-            return view('admin.clases', ['clases'=>$clases]);
+            return view('admin.clases', ['clases'=>$clases, 'notas'=>$nota]);
         }else if($request->only('listartrabajos')){
             $temp = $request->only('listartrabajos');
             $arraytemp = explode("+", $temp['listartrabajos']);

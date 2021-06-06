@@ -17,16 +17,35 @@
             <thead>
                 <tr>
                     <td>Asignatura</td>
+                    <td>Nota</td>
                     <td>Curso</td>
                     <td>Alumno</td>
                     <td>&nbsp;</td>
                 </tr>
             </thead>
             <tbody>
-            <?php //dd($clases) ?>
+            <?php// dd($notas) ?>
             @foreach($clases as $clase)
             <tr>
                 <td>{{$clase->nameClass}}</td>
+                <td>
+                @foreach($notas as $nota)
+                        @if ($clase->id_class == $nota->id_class)
+                            @php
+                                $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100)); 
+                                $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
+                                $flag = true;
+                            @endphp
+                            <td>{{$notacalculada}}</td>  
+                            @break;      
+                        @endif
+                @endforeach
+                @php
+                if (!$flag){
+                    echo ('<td></td>');
+                }
+                @endphp
+                </td>
                 <td>{{$clase->description}}</td>
                 <td>{{$clase->name}} {{$clase->surname}}</td>
                 <td>

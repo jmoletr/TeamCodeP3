@@ -60,8 +60,17 @@ class TeacherController extends Controller
                 ->where('class.id_teacher', $idprofe)
                 ->get();
 
+            $nota = DB::table('exams')
+                ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
+                ->join('users', 'exams.id_student','=','users.id')
+                ->join('class', 'exams.id_class','=', 'class.id_class')
+                ->join('works', 'works.id_class','=','class.id_class')
+                ->join('percentage','percentage.id_class','=','class.id_class')
+                ->join('courses','class.id_course','=','courses.id_course')
+                ->get();
+
                 
-            return view('teacher.clases', ['clases'=>$clases]);
+            return view('teacher.clases', ['clases'=>$clases, 'notas'=>$nota]);
         }else if($request->only('listartrabajos')){
             $temp = $request->only('listartrabajos');
             $arraytemp = explode("+", $temp['listartrabajos']);

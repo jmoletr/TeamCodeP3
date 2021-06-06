@@ -117,14 +117,16 @@ class AdminController extends Controller
 
 
         }else if($request->only('borrartrabajos')){
-            $idWork = $request->only('borrartrabajos');
+            $idWork = $request->only('borrartrabajos')['borrartrabajos'];
             DB::table('works')
                 ->where('id_work',$idWork)
                 ->delete();
+            session(['Listo'=>'El trabajo ha sido borrado']);
+            return back();
         }else if($request->only('editartrabajos')){
             //dd($request->only('editartrabajos'));
             $idThisWork=$request->only('editartrabajos');
-            $idstudent = $request->only('idstudent');
+            $idstudent = $request->input('idstudent');
             $markwork = $request->only('mark_work');
             //dd($idThisWork['editartrabajos']); //devuelve bien
             $students = DB::table('users')
@@ -134,7 +136,7 @@ class AdminController extends Controller
             $allworks = DB::table('works')
                             ->select('works.*')
                             ->get();
-            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent['idstudent'],'markwork'=>$markwork['mark_work']]);
+            return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent,'markwork'=>$markwork['mark_work']]);
         
         }else if($request->only('modificacion')){
             //dd($request->only('modificacion')); 

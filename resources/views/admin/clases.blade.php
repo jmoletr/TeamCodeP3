@@ -36,7 +36,7 @@
                                 $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
                                 $flag = true;
                             @endphp
-                            <td>{{$notacalculada}}</td>  
+                            {{$notacalculada}}
                             @break;      
                         @endif
                 @endforeach

@@ -452,13 +452,13 @@ class AdminController extends Controller
                     ->where('class.id_class',$id_clase)
                     ->get();
                 DB::table('works')
-                    ->where('works.id_class', $clase->id_class)
+                    ->where('works.id_class', $clase[0]->id_class)
                     ->delete();
                 DB::table('exams')
-                    ->where('exams.id_class', $clase->id_class)
+                    ->where('exams.id_class', $clase[0]->id_class)
                     ->delete();
                 DB::table('class')
-                    ->where('class.id_class', $clase->id_class)
+                    ->where('class.id_class', $clase[0]->id_class)
                     ->delete();
                 
 

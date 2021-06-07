@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Work;
+use App\Models\Course;
+
 
 class AdminController extends Controller
 {
-    
+
     /**
      * Create a new controller instance.
      *
@@ -21,10 +23,10 @@ class AdminController extends Controller
 
 
     public function index(){
-        $students = DB::table('students')
+       /* $students = DB::table('students')
             ->select('students.*')
             ->orderby('id','DESC')
-            ->get();
+            ->get();*/
         $asignaturas = DB::table('users')
             ->select('id','users.name','users.surname','courses.description','courses.id_course')
             ->join('enrollment', 'users.id', '=', 'id_student')
@@ -57,13 +59,13 @@ class AdminController extends Controller
                 ->where('enrollment.id_student',$idStudent)
                 ->get();
 
-                
+
             return view('admin.clases', ['clases'=>$clases]);
         }else if($request->only('listartrabajos')){
             $temp = $request->only('listartrabajos');
             $arraytemp = explode("+", $temp['listartrabajos']);
             $idStudent=$arraytemp[0];
-            $idClass=$arraytemp[1]; 
+            $idClass=$arraytemp[1];
             $works = DB::table('works')
                 ->select('works.*','class.name AS nameClass','class.id_class','users.name','users.surname','users.id AS iduser','works.name AS workname')
                 ->join('class','class.id_class','=','works.id_class')
@@ -86,7 +88,7 @@ class AdminController extends Controller
                 $allworks = DB::table('works')
                             ->select('works.*')
                             ->get();
-            
+
             return view('admin.works', ['works'=>$works, 'class'=>$clase, 'courses'=>$courses, 'students'=>$students,'allworks'=>$allworks]);
         }else if($request->only('listarexamenes')){
             $temp = $request->only('listarexamenes');
@@ -127,10 +129,10 @@ class AdminController extends Controller
                             ->select('works.*')
                             ->get();
             return view('admin.editwork',['allworks'=>$allworks,'students'=>$students,'idthiswork'=>$idThisWork['editartrabajos'],'idstudent'=>$idstudent['idstudent'],'markwork'=>$markwork['mark_work']]);
-        
+
         }else if($request->only('modificacion')){
-            //dd($request->only('modificacion')); 
-            
+            //dd($request->only('modificacion'));
+
             if($request->only('modificacion')['modificacion']=='modificacionWork'){
                 //consulta de update
                //dd($request->all());
@@ -155,23 +157,23 @@ class AdminController extends Controller
                 //dd($request->all());
                 DB::table('percentage')
                         ->where('id_percentage', $request->id_percentage )
-                        ->update(['continuous_assessment' => $request->ec_percent, 
+                        ->update(['continuous_assessment' => $request->ec_percent,
                                     'exams' => $request->exam_percent,
                                 ]);
                 session(['Listo'=>'Datos actualizados Correctamente']);
                 return back();
-            
+
             }
 
-            
-            
-        
+
+
+
         }else if($request->only('editarexamenes')){
             $idThisExam=$request->only('editarexamenes');
             $idstudent = $request->only('idstudent');
             $markexam = $request->only('mark_exam');
             $class = $request->only('idclass');
-            
+
             $students = DB::table('users')
                 ->select('users.*')
                 ->where('rol_id','3')
@@ -202,9 +204,9 @@ class AdminController extends Controller
                 ->select('percentage.*')
                 ->get();
 
-            return view('admin.editporcent',['students'=>$students,'clase'=>$clase,'courses'=>$courses, 'percent'=>$percent, 'idstudent'=>$idstudent,'idcourse'=>$idcourse,'idclass'=>$idclass, 'ec'=>$ec,'exam'=>$exam, 'id_percentage'=>$id_percentage]); 
+            return view('admin.editporcent',['students'=>$students,'clase'=>$clase,'courses'=>$courses, 'percent'=>$percent, 'idstudent'=>$idstudent,'idcourse'=>$idcourse,'idclass'=>$idclass, 'ec'=>$ec,'exam'=>$exam, 'id_percentage'=>$id_percentage]);
 
-        
+
         }else if($request->only('modificarporcentaje')){
             $asignaturaid = $request->only('modificarporcentaje');
             $porcent = DB::table('percentage')
@@ -222,8 +224,16 @@ class AdminController extends Controller
         //ZONA CREACION DE ENTIDADES
 
         if($request->only('crear')){
-            if($request->only('crear')['crear']=='crear_cursos'){
-                return view('admin.create.createcursos');               
+            //return view('admin.create.createcursos');
+              if($request->only('guardar')['guardar']=='guardarCurso'){
+                $newCourse = new Course();
+                $newCourse->name=$request->input('name');
+                $newCourse->description=$request->input('description');
+                $newCourse->date_start=$request->input('date_start');
+                $newCourse->date_end=$request->input('date_end');
+                $newCourse->active=$request->input('active');
+                $newCourse->save();
+                return view('admin.create.createcursos');
             }
             if($request->only('crear')['crear']=='crear_clases'){
                 $courses = DB::table('courses')
@@ -236,8 +246,8 @@ class AdminController extends Controller
                 $agendas = DB::table('schedule')
                 ->select('schedule.*')
                 ->get();
-                
-                
+
+
                 return view('admin.create.createclases',['teachers'=>$teachers,'courses'=>$courses,'agendas'=>$agendas]);
             }
             if($request->only('crear')['crear']=='crear_agendas'){
@@ -270,7 +280,7 @@ class AdminController extends Controller
             }
         }
 
-        
+
     }
-       
+
 }

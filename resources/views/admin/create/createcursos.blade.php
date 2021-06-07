@@ -54,12 +54,13 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <input type="submit" class="btn btn-primary" name="guardar" value="guardarCurso">
+{{--                                        <button type="submit" name="guardar" value="guardarCurso" class="btn btn-primary">Guardar</button>--}}
                                     </div>
                                 </div>
-                                
+
                             </form>
-                               
+
                         </div>
                     </div>
                 </div>

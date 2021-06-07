@@ -67,7 +67,6 @@ class StudentController extends Controller
                 ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
                 ->join('users', 'users.id', '=', 'enrollment.id_student')
                 ->where('enrollment.id_student',$idStudent)
-                ->where('class.id_teacher',$idteacher)
                 ->get();
             $nota = DB::table('exams')
                 ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')

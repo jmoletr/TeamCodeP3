@@ -63,8 +63,7 @@
                             <td><strong>Descripción</strong></td>
                             <td><strong>Fecha Inicio</strong></td>
                             <td><strong>Fecha Final</strong></td>
-                            <!-- JORDI, ESTO TENDRÍA QUE ESTAR EN STUDENT/CLASES???? -->
-                            <!td><strong>Nota Media</strong></td-->
+                            <td>&nbsp;</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -74,25 +73,10 @@
                                 <td>{{$asignatura->description}}</td>
                                 <td>{{$asignatura->date_start}}</td>
                                 <td>{{$asignatura->date_end}}</td>
-
-                                <!-- JORDI, ESTO TENDRÍA QUE ESTAR EN STUDENT/CLASES???? -->
-                                <?php // dd($notas) ?>
-
-                                @foreach($notas as $nota)
-                                    @if ($asignatura->id_course == $nota->id_course)
-                                        @php
-                                            $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100));
-                                            $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
-                                        @endphp
-                                        <td>{{$notacalculada}}</td>
-                                        @break;
-                                    @endif
-                                @endforeach
-                            <!-- JORDI, HASTA AQUÍ????ESTO TENDRÍA QUE ESTAR EN STUDENT/CLASES???? -->
-
                                 <td>
                                     <form action="/student" method="POST">
                                         @csrf
+                                        <input type="hidden" name="id_class" value={{$asignatura->id_class}}>
                                         <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver asignatura</button>
                                     <!-- ¿Dato calculado? <button class="btn btn-round" type="submit" name="modificarEC" value={{$asignatura->id}}><i class="fas fa-poll-h"></i>Modificar EC</button> -->
 

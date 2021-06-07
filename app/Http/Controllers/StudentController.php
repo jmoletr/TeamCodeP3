@@ -26,9 +26,10 @@ class StudentController extends Controller
              ->orderby('id','DESC')
              ->get();*/
         $asignaturas = DB::table('users')
-            ->select('id', 'courses.name', 'courses.description', 'courses.id_course', 'courses.date_start', 'courses.date_end')
+            ->select('id', 'courses.name', 'courses.description', 'courses.id_course', 'courses.date_start', 'courses.date_end', 'class.id_class AS id_class')
             ->join('enrollment', 'users.id', '=', 'id_student')
             ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
+            ->join('class', 'class.id_course','=','courses.id_course')
             ->where('id_student', Auth::User()->id)
             ->get();
         $nota = DB::table('exams')
@@ -50,14 +51,24 @@ class StudentController extends Controller
         // saber qué estudiante ha pulsado
         if($request->only('listarclass')){
             $idStudent = $request->only('listarclass');
+            $id_class = $request->input('id_class');
             $clases = DB::table('class')
                 ->select('class.name AS nameClass','class.id_class','enrollment.id_student','users.name','users.surname','courses.name as coursesName','users.id AS iduser')
                 ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
                 ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
                 ->join('users', 'users.id', '=', 'enrollment.id_student')
                 ->where('enrollment.id_student',$idStudent)
+                ->where('class.id_class', $id_class)
                 ->get();
-            return view('student.clases', ['clases'=>$clases]);
+            $nota = DB::table('exams')
+                ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
+                ->join('users', 'exams.id_student','=','users.id')
+                ->join('class', 'exams.id_class','=', 'class.id_class')
+                ->join('works', 'works.id_class','=','class.id_class')
+                ->join('percentage','percentage.id_class','=','class.id_class')
+                ->join('courses','class.id_course','=','courses.id_course')
+                ->get();
+            return view('student.clases', ['clases'=>$clases, 'notas'=>$nota]);
 
         }else if($request->only('listartrabajos')){
             $temp = $request->only('listartrabajos');

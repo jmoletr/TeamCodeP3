@@ -45,16 +45,30 @@
             <div class="row">
                 <div class="jumbotron" id="altas">
                     <h1 class="display-4">Zona de Altas</h1>
-                    <p class="lead">Gestiona la creación de diferentes las diferentes entidades</p>
+                    <p class="lead">Gestiona la creación de las diferentes entidades</p>
                     <hr class="my-4">
                     
                         <form action="/admin" method="POST">
                         @csrf
-                            <button type="submit" name="crear" value="crear_cursos" class="btn btn-primary">Cursos</button>
-                            <button type="submit" name="crear" value="crear_clases" class="btn btn-primary">Clases</button>
-                            <button type="submit" name="crear" value="crear_agendas" class="btn btn-primary">Agendas</button>
-                            <button type="submit" name="crear" value="crear_examenes" class="btn btn-primary">Exámenes</button>
-                            <button type="submit" name="crear" value="crear_trabajos" class="btn btn-primary">Trabajos de Ev.Cont</button>
+                        <div class="row m-3">
+                            <div class="col-4">
+                                <button style="font-size:1.3em;" type="submit" name="crear" value="crear_cursos" class="btn btn-primary">Cursos</button>
+                            </div>   
+                            <div class="col-4">
+                                <button style="font-size:1.3em;" type="submit" name="crear" value="crear_clases" class="btn btn-primary">Clases</button>
+                            </div>
+                            <div class="col-4">
+                                <button style="font-size:1.3em;" type="submit" name="crear" value="crear_agendas" class="btn btn-primary">Agendas</button>
+                            </div>
+                        </div>
+                        <div class="row m-3">
+                        <div class="col-4">
+                            <button style="font-size:1.3em;" type="submit" name="crear" value="crear_examenes" class="btn btn-primary">Exámenes</button>
+                        </div>
+                        <div class="col-8">
+                            <button style="font-size:1.3em; margin-left:11%;" type="submit" name="crear" value="crear_trabajos" class="btn btn-primary">Trabajos de Ev.Cont</button>
+                        </div>  
+                        </div>
                         </form>
                     
                 </div>
@@ -66,12 +80,12 @@
                     <hr class="my-4">
                     <form action="/admin" method="POST">
                         @csrf
-                            <button type="submit" name="crear" value="matricula" class="btn btn-primary">Matricular</button>
+                            <button style="font-size:3em; margin-left:23%; margin-top:7%;" type="submit" name="crear" value="matricula" class="btn btn-primary">Matricular</button>
                         </form>
                     
                     
                 </div>
-                <div class="jumbotron bg-danger text-white">
+                <div style="width:100%; text-align:center;" class="jumbotron bg-danger text-white">
                     
                     <h1 class="display-4">Zona ¡DANGER!</h1>
                     <p class="lead">ZONA DE BORRADO PERMANENTE</p>

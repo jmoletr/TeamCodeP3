@@ -19,7 +19,6 @@
                 <tr>
                     <td>Estudiante</td>
                     <td>Curso</td>
-                    <td>Nota Final</td>
                     <td>Ver Asignaturas</td>
                 </tr>
             </thead>
@@ -29,17 +28,7 @@
                 <tr>
                     <td>{{$asignatura->name}} {{$asignatura->surname}}</td>
                     <td>{{$asignatura->description}}</td>
-                    <?php // dd($notas) ?>
-                    @foreach($notas as $nota)
-                        @if ($asignatura->id_course == $nota->id_course)
-                            @php
-                                $notacalculada = (float)(($nota->notaworks * $nota->ec / 100 ) + ($nota->notaexamen * $nota->percentexamen / 100));
-                                $notacalculada = $notacalculada>=0 ? $notacalculada : $notacalculada = '-';
-                            @endphp
-                            <td>{{$notacalculada}}</td>
-                            @break;
-                        @endif
-                    @endforeach
+                    
                     <td>
                         <form action="/teacher" method="POST">
                         @csrf

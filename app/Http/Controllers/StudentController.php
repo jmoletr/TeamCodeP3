@@ -34,7 +34,7 @@ class StudentController extends Controller
             ->where('enrollment.id_student',Auth::User()->id)
             ->get();
         $clase = DB::table('class')
-            ->select('class.id_class','class.id_course')
+            ->select('class.id_class','class.id_course','class.id_teacher')
             ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
             ->join('users', 'users.id', '=', 'enrollment.id_student')
             //->join('class', "class.id_course",'=', 'courses.id_course')
@@ -59,13 +59,15 @@ class StudentController extends Controller
         // saber qué estudiante ha pulsado
         if($request->only('listarclass')){
             $idStudent = $request->only('listarclass');
+            $idteacher = $request->input('id_teacher');
             $id_class = $request->input('id_class');
             $clases = DB::table('class')
-                ->select('class.name AS nameClass','class.id_class','enrollment.id_student','users.name','users.surname','courses.name as coursesName','users.id AS iduser')
+                ->select('class.name AS nameClass','class.id_class','enrollment.id_student','users.name','users.surname','courses.name as coursesName','users.id AS iduser', 'class.id_teacher AS id_teacher')
                 ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
                 ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
                 ->join('users', 'users.id', '=', 'enrollment.id_student')
                 ->where('enrollment.id_student',$idStudent)
+                ->where('class.id_teacher',$idteacher)
                 ->get();
             $nota = DB::table('exams')
                 ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
@@ -75,6 +77,7 @@ class StudentController extends Controller
                 ->join('percentage','percentage.id_class','=','class.id_class')
                 ->join('courses','class.id_course','=','courses.id_course')
                 ->get();
+                
             return view('student.clases', ['clases'=>$clases, 'notas'=>$nota]);
 
         }else if($request->only('listartrabajos')){

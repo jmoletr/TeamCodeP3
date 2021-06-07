@@ -28,10 +28,18 @@
                 <tr>
                     <td>{{$asignatura->name}} {{$asignatura->surname}}</td>
                     <td>{{$asignatura->description}}</td>
-                    
+
                     <td>
                         <form action="/teacher" method="POST">
-                        @csrf
+                            @csrf
+                            @foreach ($clases as $id)
+                                @if ($id->id_course == $asignatura->id_course)
+                                <input type="hidden" name="id_class" value={{$id->id_class}}>
+                                <input type="hidden" name="id_teacher" value={{$id->id_teacher}}>
+                                @break
+                                @endif
+                            @endforeach
+                   
                             <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver Asignaturas</button>
                             <!-- ¿Dato calculado? <button class="btn btn-round" type="submit" name="modificarEC" value={{$asignatura->id}}><i class="fas fa-poll-h"></i>Modificar EC</button> -->
                             <button class="btn btn-round" type="submit" name="modificarporcentaje" value={{$asignatura->id}}><i class="fas fa-percent"></i> de EC</button>

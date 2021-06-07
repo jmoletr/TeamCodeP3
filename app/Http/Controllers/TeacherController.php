@@ -32,32 +32,34 @@ class TeacherController extends Controller
             ->where('users.rol_id','3')
             ->where('class.id_teacher', $idprofe)
             ->get();
-        $nota = DB::table('exams')
-            ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
-            ->join('users', 'exams.id_student','=','users.id')
-            ->join('class', 'exams.id_class','=', 'class.id_class')
-            ->join('works', 'works.id_class','=','class.id_class')
-            ->join('percentage','percentage.id_class','=','class.id_class')
-            ->join('courses','class.id_course','=','courses.id_course')
+        $clase = DB::table('class')
+            ->select('class.id_class','class.id_course','class.id_teacher')
+            ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
+            ->join('users', 'users.id', '=', 'enrollment.id_student')
+            //->join('class', "class.id_course",'=', 'courses.id_course')
+            ->where('class.id_teacher', Auth::User()->id)
             ->get();
+        
         session(['asignaturas'=>$asignaturas]);
          //dd($nota);
         //$notacalculada = (float)(($nota['notaworks'] * $nota['ec'] / 100 ) + ($nota['notaexamen'] * $nota['percentexamen'] / 100));
-        return view('teacher', ['asignaturas'=>$asignaturas, 'notas'=>$nota]);
+        return view('teacher', ['asignaturas'=>$asignaturas, 'clases'=>$clase]);
     }
 
     public function store(Request $request){
         // saber qué estudiante ha pulsado
         if($request->only('listarclass')){
-            $idprofe = Auth::user()->id;
             $idStudent = $request->only('listarclass');
+            $idteacher = $request->input('id_teacher');
+            $id_class = $request->input('id_class');
             $clases = DB::table('class')
                 ->select('class.name AS nameClass','class.id_class','enrollment.id_student','users.name','users.surname','courses.description','users.id AS iduser')
                 ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
                 ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
                 ->join('users', 'users.id', '=', 'enrollment.id_student')
                 ->where('enrollment.id_student',$idStudent)
-                ->where('class.id_teacher', $idprofe)
+                ->where('class.id_teacher', $idteacher)
+                ->where('class.id_class', $id_class)
                 ->get();
 
             $nota = DB::table('exams')

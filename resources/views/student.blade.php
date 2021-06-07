@@ -67,6 +67,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php //dd($asignaturas); ?>
                         @foreach($asignaturas as $asignatura)
                             <tr>
                                 <td>{{$asignatura->name}}</td>
@@ -76,7 +77,12 @@
                                 <td>
                                     <form action="/student" method="POST">
                                         @csrf
-                                        <input type="hidden" name="id_class" value={{$asignatura->id_class}}>
+                                        @foreach ($id_class as $id)
+                                            @if ($id->id_course == $asignatura->id_course)
+                                            <input type="hidden" name="id_class" value={{$id->id_class}}>
+                                            @break
+                                            @endif
+                                        @endforeach
                                         <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver asignatura</button>
                                     <!-- ¿Dato calculado? <button class="btn btn-round" type="submit" name="modificarEC" value={{$asignatura->id}}><i class="fas fa-poll-h"></i>Modificar EC</button> -->
 

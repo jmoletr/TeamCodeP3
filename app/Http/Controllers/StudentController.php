@@ -25,26 +25,34 @@ class StudentController extends Controller
              ->select('students.*')
              ->orderby('id','DESC')
              ->get();*/
-        $asignaturas = DB::table('users')
-            ->select('id', 'courses.name', 'courses.description', 'courses.id_course', 'courses.date_start', 'courses.date_end', 'class.id_class AS id_class')
-            ->join('enrollment', 'users.id', '=', 'id_student')
-            ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
-            ->join('class', 'class.id_course','=','courses.id_course')
+        $asignaturas = DB::table('courses')
+            ->select('id', 'courses.name', 'courses.description', 'courses.id_course AS id_course', 'courses.date_start', 'courses.date_end')
+            ->join('enrollment', 'enrollment.id_course', '=', 'courses.id_course')
+            ->join('users', 'users.id', '=', 'enrollment.id_student')
+            //->join('class', "class.id_course",'=', 'courses.id_course')
             ->where('id_student', Auth::User()->id)
+            ->where('enrollment.id_student',Auth::User()->id)
             ->get();
-        $nota = DB::table('exams')
-            ->select('works.mark AS notaworks', 'exams.mark AS notaexamen','percentage.continuous_assessment AS ec', 'percentage.exams AS percentexamen', 'users.id AS id_student','class.id_class AS id_class','courses.id_course AS id_course')
-            ->join('users', 'exams.id_student','=','users.id')
-            ->join('class', 'exams.id_class','=', 'class.id_class')
-            ->join('works', 'works.id_class','=','class.id_class')
-            ->join('percentage','percentage.id_class','=','class.id_class')
-            ->join('courses','class.id_course','=','courses.id_course')
-            ->where('users.id',Auth::User()->id)
+        $clase = DB::table('class')
+            ->select('class.id_class','class.id_course')
+            ->join('enrollment', 'enrollment.id_course', '=', 'class.id_course')
+            ->join('users', 'users.id', '=', 'enrollment.id_student')
+            //->join('class', "class.id_course",'=', 'courses.id_course')
+            ->where('id_student', Auth::User()->id)
+            ->where('enrollment.id_student',Auth::User()->id)
             ->get();
-       session(['asignaturas'=>$asignaturas]);
+        // $asignaturas = DB::table('users')
+        //     ->select('id', 'courses.name', 'courses.description', 'courses.id_course AS id_course', 'courses.date_start', 'courses.date_end','class.id_class AS id_class')
+        //     ->join('enrollment', 'users.id', '=', 'id_student')
+        //     ->join('courses', 'enrollment.id_course', '=', 'courses.id_course')
+        //     ->join('class', "class.id_course",'=', 'courses.id_course')
+        //     ->where('id_student', Auth::User()->id)
+        //     ->get();
+       
+       
         //dd($nota);
         //$notacalculada = (float)(($nota['notaworks'] * $nota['ec'] / 100 ) + ($nota['notaexamen'] * $nota['percentexamen'] / 100));
-        return view('student', ['asignaturas'=>$asignaturas, 'notas'=>$nota]);
+        return view('student', ['asignaturas'=>$asignaturas, 'id_class'=>$clase]);
     }
 
     public function store(Request $request){

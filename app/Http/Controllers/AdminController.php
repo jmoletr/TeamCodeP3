@@ -394,23 +394,77 @@ class AdminController extends Controller
                 return view('admin.delete.usuarios',['usuarios'=>$usuarios]);
             }
             if ($request->only('borrar')['borrar']=='cursos'){
-                //Se borraran todas las clases, etc
+               
                 $cursos = DB::table('course')
                     ->select('course.*')
                     ->get();
                 return view('admin.delete.cursos',['courses'=>$cursos]);
             }
             if ($request->only('borrar')['borrar']=='clases'){
-                //Se borrarán tambien todos los trabajos y examenes relacionados con la clase o asignatura
+               
                 $clases = DB::table('class')
                     ->select('class.*')
                     ->get();
                 return view('admin.delete.clases',['class'=>$clases]);
                 
             }
-            if ($request->only('borrar')['borrar']=='borrarcurso'){}
-            if ($request->only('borrar')['borrar']=='borrarclase'){}
-            if ($request->only('borrar')['borrar']=='borrarusuario'){}
+            if ($request->only('borrar')['borrar']=='borrarcurso'){
+                 //Se borraran todas las clases, etc
+                 $id_course = $request->only('id_course')['id_course'];
+                $course = DB::table('courses')
+                    ->select('courses.*')
+                    ->where('courses.id_course',$id_course)
+                    ->get();
+                $clase = DB::table('class')
+                    ->select('class.*')
+                    ->where('class.id_course',$id_course)
+                    ->get();
+                DB::table('works')
+                    ->where('works.id_class', $class->id_class)
+                    ->delete();
+                DB::table('exams')
+                    ->where('exams.id_class', $class->id_class)
+                    ->delete();
+                DB::table('class')
+                    ->where('class.id_class', $class->id_class)
+                    ->delete();
+                DB::table('courses')
+                    ->where('courses.id_course', $course->id_course)
+                    ->delete();
+                
+
+                session(['Listo'=>'Datos borrados Correctamente']);
+                return back();
+            }
+            if ($request->only('borrar')['borrar']=='borrarclase'){
+                 //Se borrarán tambien todos los trabajos y examenes relacionados con la clase o asignatura
+                $id_clase = $request->only('id_clase')['id_clase'];
+                $clase = DB::table('class')
+                    ->select('class.*')
+                    ->where('class.id_class',$id_clase)
+                    ->get();
+                DB::table('works')
+                    ->where('works.id_class', $clase->id_class)
+                    ->delete();
+                DB::table('exams')
+                    ->where('exams.id_class', $clase->id_class)
+                    ->delete();
+                DB::table('class')
+                    ->where('class.id_class', $clase->id_class)
+                    ->delete();
+                
+
+                session(['Listo'=>'Datos borrados Correctamente']);
+                return back();
+            }
+            if ($request->only('borrar')['borrar']=='borrarusuario'){
+                $id_user = $request->only('id_user')['id_user'];
+                DB::table('users')
+                    ->where('id',$id_user)
+                    ->delete();
+                session(['Listo'=>'Datos borrados Correctamente']);
+                return back();
+            }
         
         }
 

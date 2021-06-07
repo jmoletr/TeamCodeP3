@@ -14,7 +14,10 @@
                     @endforeach
                 </select>
                 
+                
                 <input type="submit" class="btn btn-primary" name="borrar" value="borrarcurso">
             </div>
-            </form
+</form>
+
+<p style="text-danger">Se borrará el <mark>curso</mark> escogido junto a sus <mark>trabajos y exámenes y también todas sus clases</mark> asociadas</p>
 @endsection

@@ -6,7 +6,7 @@
             <div class="form-group">
             
                 <label for="work_student">Usuario a borrar </label>
-                <select class="form-control" name="usuariodelete">
+                <select class="form-control" name="id_user">
                     @foreach($usuarios as $usuario)
                     @php
                         if ($usuario->rol_id==1){$usuariorol = 'Admin';}

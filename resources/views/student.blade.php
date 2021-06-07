@@ -83,11 +83,9 @@
                                             @break
                                             @endif
                                         @endforeach
-                                        <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver asignatura</button>
+                                        <button class="btn btn-round" type="submit" name="listarclass" value={{$asignatura->id}}> <i class="fa fa-eye"></i>Ver asignaturas</button>
                                     <!-- ¿Dato calculado? <button class="btn btn-round" type="submit" name="modificarEC" value={{$asignatura->id}}><i class="fas fa-poll-h"></i>Modificar EC</button> -->
-
-                                        <!-- JORDI, ESTE BOTÓN TENDRÍA QUE ESTAR EN STUDENT/CLASES???? -->
-                                        <!--button class="btn btn-round" type="submit" name="modificarporcentaje" value={{$asignatura->id}}><i class="fas fa-percent"></i> de EC</button-->
+                                        <button class="btn btn-round" type="submit" name="modificarporcentaje" value={{$asignatura->id}}><i class="fas fa-percent"></i> de EC</button>
 
                                     </form>
                                 </td>

@@ -28,7 +28,7 @@
             <?php //dd($exams) ?>
             @foreach($exams as $exam)
             <tr>
-                <td>{{$exam->name}}</td>
+                <td>{{$exam->username}} {{$exam->apellido}} </td>
                 <td>{{$exam->nameclass}}</td>
                 <td>{{$exam->workname}}</td>
                 <td>{{$exam->mark}}</td>

@@ -3,7 +3,7 @@
 
 <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Panel de Trabajos</h1>
+        <h1 class="h3 mb-0 text-gray-800">Panel de examenes</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-user fa-sm text-white-50"></i> Generate Report</a>
     </div>
@@ -25,10 +25,10 @@
                 </tr>
             </thead>
             <tbody>
-            <?php //dd($exams) ?>
+            <?php// dd ($exams) ?>
             @foreach($exams as $exam)
             <tr>
-                <td>{{$exam->name}}</td>
+                <td>{{$exam->username}} {{$exam->apellido}}  </td>
                 <td>{{$exam->nameclass}}</td>
                 <td>{{$exam->workname}}</td>
                 <td>{{$exam->mark}}</td>

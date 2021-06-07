@@ -395,8 +395,8 @@ class AdminController extends Controller
             }
             if ($request->only('borrar')['borrar']=='cursos'){
                
-                $cursos = DB::table('course')
-                    ->select('course.*')
+                $cursos = DB::table('courses')
+                    ->select('coursee.*')
                     ->get();
                 return view('admin.delete.cursos',['courses'=>$cursos]);
             }
@@ -410,7 +410,8 @@ class AdminController extends Controller
             }
             if ($request->only('borrar')['borrar']=='borrarcurso'){
                  //Se borraran todas las clases, etc
-                 $id_course = $request->only('id_course')['id_course'];
+                $id_course = $request->only('id_course')['id_course'];
+                
                 $course = DB::table('courses')
                     ->select('courses.*')
                     ->where('courses.id_course',$id_course)
@@ -419,18 +420,25 @@ class AdminController extends Controller
                     ->select('class.*')
                     ->where('class.id_course',$id_course)
                     ->get();
+                if ($clase->isEmpty()){
+                    DB::table('courses')
+                    ->where('courses.id_course', $course[0]->id_course)
+                    ->delete();
+                }else{
                 DB::table('works')
-                    ->where('works.id_class', $class->id_class)
+                    ->where('works.id_class', $clase[0]->id_class)
                     ->delete();
                 DB::table('exams')
-                    ->where('exams.id_class', $class->id_class)
+                    ->where('exams.id_class', $clase[0]->id_class)
                     ->delete();
                 DB::table('class')
-                    ->where('class.id_class', $class->id_class)
+                    ->where('class.id_class', $clase[0]->id_class)
                     ->delete();
                 DB::table('courses')
-                    ->where('courses.id_course', $course->id_course)
+                    ->where('courses.id_course', $course[0]->id_course)
                     ->delete();
+                }
+                
                 
 
                 session(['Listo'=>'Datos borrados Correctamente']);

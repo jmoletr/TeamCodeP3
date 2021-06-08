@@ -228,7 +228,7 @@ class TeacherController extends Controller
                 ->join('enrollment','percentage.id_course','=','enrollment.id_course')
                 ->join('users', 'users.id','=','enrollment.id_student')
                 ->where('users.id',$asignaturaid)
-                ->where('class.id_class',$idprofe)
+                ->where('class.id_teacher',$idprofe)
                 ->get();
                 return view('teacher.percentage',['porcent'=>$porcent]);
 

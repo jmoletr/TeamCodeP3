@@ -12,7 +12,7 @@
                     @endforeach
                 </select>
                 
-                <input type="submit" class="btn btn-primary" name="borrar" value="borrarClase">
+                <input type="submit" class="btn btn-primary" name="borrar" value="borrarclase">
             </div>
 </form>
 

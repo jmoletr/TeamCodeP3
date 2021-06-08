@@ -396,7 +396,7 @@ class AdminController extends Controller
             if ($request->only('borrar')['borrar']=='cursos'){
                
                 $cursos = DB::table('courses')
-                    ->select('coursee.*')
+                    ->select('courses.*')
                     ->get();
                 return view('admin.delete.cursos',['courses'=>$cursos]);
             }
@@ -438,9 +438,6 @@ class AdminController extends Controller
                     ->where('courses.id_course', $course[0]->id_course)
                     ->delete();
                 }
-                
-                
-
                 session(['Listo'=>'Datos borrados Correctamente']);
                 return back();
             }

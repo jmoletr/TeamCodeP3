@@ -154,7 +154,7 @@ class TeacherController extends Controller
                         ->where('id_work', $request->work )
                         ->update(['id_student' => $request->student, 'mark' => $request->work_mark ]);
                 session(['Listo'=>'Datos actualizados Correctamente']);
-                return view('teacher');
+                return back();
             }
             if($request->only('modificacion')['modificacion']=='modificacionExam'){
                 //consulta de update
@@ -163,7 +163,7 @@ class TeacherController extends Controller
                         ->where('id_exam', $request->work )
                         ->update(['id_student' => $request->student, 'mark' => $request->nota ]);
                 session(['Listo'=>'Datos actualizados Correctamente']);
-                return view('teacher');
+                return back();
             }
             if($request->only('modificacion')['modificacion']=='modificacionPorcent'){
                 //dd($request);
@@ -175,7 +175,7 @@ class TeacherController extends Controller
                                     'exams' => $request->exam_percent,
                                 ]);
                 session(['Listo'=>'Datos actualizados Correctamente']);
-                return view('teacher');
+                return back();
             
             }
         
